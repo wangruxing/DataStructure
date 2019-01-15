@@ -14,8 +14,8 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├── Program 1.7: Searching an ordered list    13<br />
 ├── Program 1.8: Recursive implementation of binary search    15<br />
 ├── Program 1.9: Recursive permutation generator    16<br />
-├─ 1.4 Data Abstraction
-├─ 1.5 Performance Analysis
+├─ 1.4 Data Abstraction<br />
+├─ 1.5 Performance Analysis<br />
 ├── Program 1.10: Simple arithmetic function    23<br />
 ├── Program 1.11: Iterative function for summing a list of numbers    24<br />
 ├── Program 1.12: Recursive function for summing a list of numbers    24<br />
