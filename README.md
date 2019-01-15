@@ -60,18 +60,41 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├─ 2.8 References And Selected Readings<br />
 ├─ 2.9 Additional Exercises<br />
 ├<b> Chapter 3. Stacks and Queues</b><br />
-├─ <br />
-├── <br />
+├─ 3.1 Stacks<br />
+├── Program 3.1: Add an item to a stack 111<br />
+├── Program 3.2: Delete from a stack 111<br />
+├── Program 3.3: Satck full 111<br />
+├─ 3.2 Stacks Using Dynamic Arrays<br />
+├── Program 3.4: Satck full with array doubling 113<br />
+├─ 3.3 Queues<br />
+├── Program 3.5: Add to a queue 116<br />
+├── Program 3.6: Delete from a queue 116<br />
+├── Program 3.7: Add to a circular queue 118<br />
+├── Program 3.8: Delete from a circular queue 119<br />
+├─ 3.4 Circular Queues Using Dynamic Arrays<br />
+├─ 3.5 A Mazing Problem<br />
+├── Program 3.9: Add to a circular queue 122<br />
+├── Program 3.10: Doubling queue capacity 122<br />
+├── Program 3.11: Initial maze algorithm 126<br />
+├─ 3.6 Evaluation of Expressions<br />
+├── Program 3.12: Maze search function 128<br />
+├── Program 3.13: Function to evaluate a postfix expression 133<br />
+├── Program 3.14: Function to get a token from the input string 134<br />
+├── Program 3.15: Function to convert from infix to postfix 137<br />
+├─ 3.7 Multiple Stacks and Queues<br />
+├── Program 3.16: Add an item to the _i_th stack 140<br />
+├── Program 3.17: Delete an item from the _i_th stack 141<br />
+├─ 3.8 Additional Exercises<br />
 ├<b> Chapter 4. Linked Lists</b><br />
 ├─ <br />
-├── <br />
+├── Program : <br />
 ├<b> Chapter 5. Trees</b><br />
 ├─ <br />
-├── <br />
+├── Program : <br />
 ├<b> Chapter 6. Graphs</b><br />
 ├─ <br />
-├── <br />
+├── Program : <br />
 ├<b> Chapter 7. Sorting Chapter</b><br />
 ├─ <br />
-├── <br />
+├── Program : <br />
 └───<br />
