@@ -44,22 +44,21 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├── Program 2.4: Function to check equality of structures 61<br />
 ├─ 2.4 Polynomials<br />
 ├── Program 2.5: Initial version of _padd_ function 68<br />
-├── Program : <br />
-├── Program : <br />
+├── Program 2.6: Function to add two polynomials 70<br />
+├── Program 2.7: Function to add a new term 71<br />
 ├─ 2.5 Spares Matrices<br />
-├── Program : <br />
-├── Program : <br />
-├── Program : <br />
-├── Program : <br />
+├── Program 2.8: Transpose of a sparse matrix 77<br />
+├── Program 2.9: Fast transpose of a sparse matrix 78<br />
+├── Program 2.10: Sparse matrix multiplication 82<br />
+├── Program 2.11: _storeSum_ function 82<br />
 ├─ 2.6 Representation of Multidimensional Arrays<br />
 ├─ 2.7 Strings<br />
-├── Program : <br />
-├── Program : <br />
-├── Program : <br />
-├── Program : <br />
+├── Program 2.12: String insertion function 92<br />
+├── Program 2.13: Pattern matching by checking end indices first 93<br />
+├── Program 2.14: Knuth, Morris, Pratt pattern matching algorithm 96<br />
+├── Program 2.15: Computing the failure function 97<br />
 ├─ 2.8 References And Selected Readings<br />
 ├─ 2.9 Additional Exercises<br />
-├── Program : <br />
 ├<b> Chapter 3. Stacks and Queues</b><br />
 ├─ <br />
 ├── <br />
