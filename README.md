@@ -82,10 +82,17 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├── Program 3.14: Function to get a token from the input string 134<br />
 ├── Program 3.15: Function to convert from infix to postfix 137<br />
 ├─ 3.7 Multiple Stacks and Queues<br />
-├── Program 3.16: Add an item to the _i_th stack 140<br />
-├── Program 3.17: Delete an item from the _i_th stack 141<br />
+├── Program 3.16: Add an item to the _i_ th stack 140<br />
+├── Program 3.17: Delete an item from the _i_ th stack 141<br />
 ├─ 3.8 Additional Exercises<br />
 ├<b> Chapter 4. Linked Lists</b><br />
+├─ 4.1 Singly Linked Lists and Chains<br />
+├─ 4.2 Representation<br />
+├─ <br />
+├─ <br />
+├─ <br />
+├─ <br />
+├─ <br />
 ├─ <br />
 ├── Program : <br />
 ├<b> Chapter 5. Trees</b><br />
