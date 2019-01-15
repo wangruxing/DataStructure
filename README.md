@@ -33,7 +33,7 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├─ 1.6 Performance Measurement<br />
 ├── Program 1.24: First timing program for selection sort 46<br />
 ├── Program 1.25: More accurate timing program for selection sort 47<br />
-├─ 1.7 References And Selected Readings<br />
+├─ 1.7 References and Selected Readings<br />
 ├<b> Chapter 2. Arrays & Structures</b><br />
 ├─ 2.1 Arrays<br />
 ├── Program 2.1: Example array program 54<br />
@@ -122,8 +122,39 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├── Program 4.26: Insertion into a doubly linked circular list 188<br />
 ├── Program 4.27: Deletion from a doubly linked circular list 189<br />
 ├<b> Chapter 5. Trees</b><br />
-├─ <br />
-├── Program : <br />
+├─ 5.1 Introduction<br />
+├─ 5.2 Binary Trees<br />
+├─ 5.3 Binary Tree Traversals<br />
+├── Program 5.1: Inorder traversal of a binary tree 207<br />
+├── Program 5.2: Preorder traversal of a binary tree 208<br />
+├── Program 5.3: Postorder traversal of a binary tree 209<br />
+├── Program 5.4: Iterative inorder traversal 210<br />
+├── Program 5.5: Level-order traversal of a binary tree 211<br />
+├─ 5.4 Additional Binary Tree Operations<br />
+├── Program 5.6: Copying a binary tree 212<br />
+├── Program 5.7: Testing for equality of binary trees 213<br />
+├── Program 5.8: First version of satisfiability algorithm 216<br />
+├─ 5.5 Threaded Binary Trees<br />
+├── Program 5.9: Postorder evaluate function 217<br />
+├── Program 5.10: Finding te inorder successor of a node 220<br />
+├── Program 5.11: Inorder traversal of a threaded binary tree 221<br />
+├─ 5.6 Heaps<br />
+├── Program 5.12: Right insertion in a threaded binary tree 223<br />
+├── Program 5.13: Insertion into a max heap 227<br />
+├── Program 5.14: Deletion from a max heap 229<br />
+├─ 5.7 Binary Search Trees<br />
+├── Program 5.15: Recursive search of a binary search tree 233<br />
+├── Program 5.16: Iterative search of a binary search tree 233<br />
+├── Program 5.17: Insertion a dictionsry pair into a binary search tree 235<br />
+├── Program 5.18: Splitting a binary search tree 238<br />
+├─ 5.8 Selection Trees<br />
+├─ 5.9 Forests<br />
+├─ 5.10 Representation of Disjoint Sets<br />
+├── Program 5.19: Initial attempt at union-find functions 250<br />
+├── Program 5.20: Union function using weighting rule 252<br />
+├── Program 5.21: Collapsing rule 255<br />
+├─ 5.11 Counting Binary Trees<br />
+├─ 5.12 References and Selected Readings<br />
 ├<b> Chapter 6. Graphs</b><br />
 ├─ <br />
 ├── Program : <br />
