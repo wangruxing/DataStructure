@@ -8,7 +8,7 @@ int main(void) {
     int n;
     printf("Enter number of elements: ");
     scanf("%d", &n);
-    // 固定亂數種子
+    // 亂數種子
     srand( time(NULL) );
     // 指定亂數範圍
     int min = 1;
@@ -29,12 +29,10 @@ int main(void) {
     return 0;
 }
 int SeleSort(int n, int arr[]){
-    for (int c = 0; c < n-1; c++)
-    {
+    for (int c = 0; c < n-1; c++){
         int position = c;
         int swap;
-        for (int d = c + 1; d < n; d++)
-        {
+        for (int d = c + 1; d < n; d++){
             if (arr[position] > arr[d])
                 position = d;
         }
@@ -43,17 +41,14 @@ int SeleSort(int n, int arr[]){
             printf(" %d", arr[i]);
         }
         printf("\nposition= %d, position value= %d, min = %d",c, arr[c], arr[position]);
-        if (position != c)
-        {    
+        if (position != c){    
             swap = arr[c]; 
             arr[c] = arr[position];
             arr[position] = swap;
             printf(" => (position value != min) => swap\n");
         }
         else
-        {
             printf("\n");
-        }
     }
     printf("\nyour list after sorting:");
     for(int i = 0;i < n;i++){
