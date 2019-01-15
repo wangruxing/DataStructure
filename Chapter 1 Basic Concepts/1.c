@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Program 1.1: Allocation and deallocation of memory
 int main(void) {
     int i, *pi;
     float f, *pf;
