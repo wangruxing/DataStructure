@@ -35,8 +35,31 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├── Program 1.25: More accurate timing program for selection sort 47<br />
 ├─ 1.7 References And Selected Readings<br />
 ├<b> Chapter 2. Arrays & Structures</b><br />
-├─ <br />
-├── <br />
+├─ 2.1 Arrays<br />
+├── Program 2.1: Example array program 54<br />
+├── Program 2.2: One-dimensional array accessed by address 54<br />
+├─ 2.2 Dynamically Allocated Arrays<br />
+├── Program 2.3: Dynamically create a two-dimensional array 57<br />
+├─ 2.3 Structures and Unions<br />
+├── Program 2.4: Function to check equality of structures 61<br />
+├─ 2.4 Polynomials<br />
+├── Program 2.5: Initial version of _padd_ function 68<br />
+├── Program : <br />
+├── Program : <br />
+├─ 2.5 Spares Matrices<br />
+├── Program : <br />
+├── Program : <br />
+├── Program : <br />
+├── Program : <br />
+├─ 2.6 Representation of Multidimensional Arrays<br />
+├─ 2.7 Strings<br />
+├── Program : <br />
+├── Program : <br />
+├── Program : <br />
+├── Program : <br />
+├─ 2.8 References And Selected Readings<br />
+├─ 2.9 Additional Exercises<br />
+├── Program : <br />
 ├<b> Chapter 3. Stacks and Queues</b><br />
 ├─ <br />
 ├── <br />
