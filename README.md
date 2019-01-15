@@ -87,14 +87,40 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├─ 3.8 Additional Exercises<br />
 ├<b> Chapter 4. Linked Lists</b><br />
 ├─ 4.1 Singly Linked Lists and Chains<br />
-├─ 4.2 Representation<br />
-├─ <br />
-├─ <br />
-├─ <br />
-├─ <br />
-├─ <br />
-├─ <br />
-├── Program : <br />
+├─ 4.2 Representation Chain in C<br />
+├── Program 4.1: Create a two-node list 152<br />
+├── Program 4.2: Simple insert into front of list 153<br />
+├── Program 4.3: Deletion from a list 155<br />
+├── Program 4.4: Printing a list 155<br />
+├─ 4.3 Linked Stacks and Queues<br />
+├── Program 4.5: Add to a linked stack 158<br />
+├── Program 4.5: Delete from a linked stack 158<br />
+├── Program 4.7: Add to a rear of a linked queue 159<br />
+├── Program 4.8: Delete from the front of a linked queue 160<br />
+├─ 4.4 Polynomials<br />
+├── Program 4.9: Add two polynomials 163<br />
+├── Program 4.10: Attach a node to the end of a list 164<br />
+├── Program 4.11: Erasing a polynomial 166<br />
+├── Program 4.12: _getNode_ function 167<br />
+├── Program 4.13: _resNode_ function 167<br />
+├── Program 4.14: Erasing a circular list 168<br />
+├── Program 4.15: Adding two polynomials represented as circular lists with header nodes 169<br />
+├─ 4.5 Additional List Operations<br />
+├── Program 4.16: Inverting a singly linked list 171<br />
+├── Program 4.17: Concatenating singly linked lists 172<br />
+├── Program 4.18: Inserting at the front of a list 173<br />
+├── Program 4.19: Finding the length of a circular list 173<br />
+├─ 4.6 Equivalence Classes<br />
+├── Program 4.20: First pass at equivalence algorithm 175<br />
+├── Program 4.21: A more detailed version of the equivalence algorithm 176<br />
+├── Program 4.22: Program to find equivalence calsses 178<br />
+├─ 4.7 Sparse Matrices<br />
+├── Program 4.23: Read in a sparse matrix 184<br />
+├── Program 4.24: Wrie out a sparse matrix 184<br />
+├── Program 4.25: Erase a sparse matrix 185<br />
+├─ 4.8 Doubly Linked Lists <br />
+├── Program 4.26: Insertion into a doubly linked circular list 188<br />
+├── Program 4.27: Deletion from a doubly linked circular list 189<br />
 ├<b> Chapter 5. Trees</b><br />
 ├─ <br />
 ├── Program : <br />
