@@ -1,7 +1,7 @@
 # DataStructure
 Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8242-3988)
 
-Program 編號先不打，等code打出來在賦予編號
+Program 編號先不打，等code打出來在賦予編號<br />
 ┌<b> Chapter 1. Basic Concepts</b><br />
 ├─ 1.1 Overview: System Life Cycle<br />
 ├─ 1.2 Pointers and Dynamic Memory Allocation<br />
