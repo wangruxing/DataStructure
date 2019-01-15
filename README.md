@@ -1,6 +1,6 @@
 # DataStructure
 Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8242-3988)
-<p>
+
 ┌<b> Chapter 1. Basic Concepts</b><br />
 ├─ 1.1 Overview: System Life Cycle<br />
 ├─ 1.2 Pointers and Dynamic Memory Allocation<br />
@@ -76,6 +76,3 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├─ <br />
 ├── <br />
 └───<br />
-
-
-</p>
