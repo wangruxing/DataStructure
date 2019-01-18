@@ -8,9 +8,8 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├── Program 1.1: Allocation and deallocation of memory 6<br />
 ├─ 1.3 Algorithm Specification<br />
 ├── Program 1.2: Selection sort 11<br />
-├── Program : Searching a sorted list 12<br />
-├── Program : Comparison of two integers 12<br />
-├── Program : Searching an ordered list 13<br />
+├── Program 1.3: Comparison of two integers 12<br />
+├── Program 1.4: Searching an ordered list by binary search 13<br />
 ├── Program : Recursive implementation of binary search 15<br />
 ├── Program : Recursive permutation generator 16<br />
 ├─ 1.4 Data Abstraction<br />
