@@ -1,30 +1,36 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> /* 亂數相關函數 */
+#include <time.h>   /* 時間相關函數 */
 
-// Program 1.1: Allocation and deallocation of memory
+// Program 1.13: Program 1.11 with count statements
 int main(void) {
-    int i, *pi;
-    float f, *pf;
-
-    // malloc() 運算子會配置一個 int 需要的空間，並傳回該空間的位址
-    pi = (int *) malloc(sizeof(int));
-    pf = (float *) malloc(sizeof(float));
-    printf("Original state\n");
-    printf("pi : address = %p, value = %d\n", pi, *pi);
-    printf("pf : address = %p, value = %f\n", pf, *pf);
-
-    // 宣告儲存值
-    *pi = 1024;
-    *pf = 3.14;
-    printf("Change value\n");
-    printf("pi : address = %p, value = %d\n", pi, *pi);
-    printf("pf : address = %p, value = %f\n", pf, *pf);
-    
-    // free() 釋放之前使用 malloc 或 calloc 函數所配置的記憶體空間
-    free(pi);
-    free(pf);
-    printf("Release memory\n");
-    printf("pi : address = %p, value = %d\n", pi, *pi);
-    printf("pf : address = %p, value = %f\n", pf, *pf);
+    int n = 5;
+    printf("Loop execution times=%d\n", n);
+    // 亂數種子
+    srand( time(NULL) );
+    // 指定亂數範圍
+    int min = 1;
+    int max = n+100;
+    // 隨機產生n個整數
+    int list[n];
+    for(int i = 0;i < n;i++){
+        list[i] = rand() % (max - min + 1) + min;
+    }
+    int count = 0;
+    float tempsum = 0;
+    count++;
+    printf("\"float tempsum = 0;\", count=%d\n", count);
+    int i;
+    for(i = 0;i < n;i++){
+        count++;
+        printf("\"for(i = 0;i < n;i++)\",i=%d, count=%d\n", i, count);
+        tempsum += list[i];
+        count++;
+        printf("\"tempsum += list[i];\", count=%d\n", count);
+    }
+    count++;
+    printf("last execution of for, count=%d\n", count);
+    count++;
+    printf("\"return 0;\", count=%d\n", count);
     return 0;
 }

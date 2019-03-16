@@ -2,24 +2,31 @@
 #include <stdlib.h> /* 亂數相關函數 */
 #include <time.h>   /* 時間相關函數 */
 
-// Program 1.3: Comparison of two integers
-int compare(int, int);
+# define MAX_SIZE 5
+// Program 1.17: Matrix addition with count statements   29
 int main(void) {
-    // 亂數種子
-    srand( time(NULL) );
-    // 指定亂數範圍
-    int min = 1;
-    int max = 50;
-
-    int x = rand() % (max - min + 1) + min;
-    int y = rand() % (max - min + 1) + min;
-    printf("x = %d, y = %d\nresult = %d\nx < y : -1\nx = y : 0\nx > y : 1\n", x, y, compare(x, y));
-}
-int compare(int x, int y){
-    if (x < y)
-        return -1;
-    else if(x == y)
-        return 0;
-    else
-        return 1;
+    int i, j;
+    int rows, cols;
+    int count = 0;
+    printf("Enter array rows: ");
+    scanf("%d", &rows);
+    printf("Enter array cols: ");
+    scanf("%d", &cols);
+    int a[rows][cols], b[rows][cols], c[rows][cols];
+    for(i = 0;i < rows; i++){
+        count++;
+        printf("\"for(i = 0;i < rows; i++)\", i=%d, count=%d\n", i, count);
+        for(j = 0;j < cols; j++){
+            count++;
+            printf("\"for(j = 0;j < cols; j++)\", j=%d, count=%d\n", j, count);
+            c[i][j] = a[i][j] + b[i][j];
+            count++;
+            printf("\"c[i][j] = a[i][j] + b[i][j];\", count=%d\n", count);
+        }
+        count++;
+        printf("last time of j for loop, count=%d\n", count);
+    }
+    count++;
+    printf("last time of i for loop, count=%d\n", count);
+    return 0;
 }

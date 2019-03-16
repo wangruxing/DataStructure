@@ -5,36 +5,14 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
  gcc 3.c -o 3
  ./3.exe
 Program 編號先不打，等code打出來在賦予編號<br />
-┌<b> Chapter 1. Basic Concepts</b><br />
-├─ 1.1 Overview: System Life Cycle<br />
-├─ 1.2 Pointers and Dynamic Memory Allocation<br />
-├── Program 1.1: Allocation and deallocation of memory 6<br />
-├─ 1.3 Algorithm Specification<br />
-├── Program 1.2: Selection sort 11<br />
-├── Program 1.3: Comparison of two integers 12<br />
-├── Program 1.4: Searching an ordered list by binary search 13<br />
-├── Program : Recursive implementation of binary search 15<br />
-├── Program : Recursive permutation generator 16<br />
-├─ 1.4 Data Abstraction<br />
-├─ 1.5 Performance Analysis<br />
-├── Program : Simple arithmetic function 23<br />
-├── Program : Iterative function for summing a list of numbers 24<br />
-├── Program : Recursive function for summing a list of numbers 24<br />
-├── Program : Program 1.11 with count satements 26<br />
-├── Program : Simplified version of Program 1.13 27<br />
-├── Program : Program 1.12 with count satements added 27<br />
-├── Program : Matrix addition 28<br />
-├── Program : Matrix addition with count satements 29<br />
-├── Program : Simplification of Program 1.17 29<br />
-├── Program : Printing out a matrix 33<br />
-├── Program : Matrix multiplication 33<br />
-├── Program : Matrix product function 34<br />
-├── Program : Matrix transposition function 34<br />
-├── Program : Magic square program 40<br />
-├─ 1.6 Performance Measurement<br />
-├── Program : First timing program for selection sort 46<br />
-├── Program : More accurate timing program for selection sort 47<br />
-├─ 1.7 References and Selected Readings<br />
+┌<b> Chapter 1. Basic Concepts (2019.03.16)</b><br />
+├─ Program 1.13: Program 1.11 with count statements   26
+├─ Program 1.15: Program 1.12 with count statements added   27
+├─ Program 1.17: Matrix addition with count statements   29
+├─ Program 1.1: Allocation and deallocation of memory
+├─ Program 1.2: Selection sort algorithm
+├─ Program 1.3: Comparison of two integers
+├─ Program 1.4: Searching an ordered list by binary search
 ├<b> Chapter 2. Arrays & Structures</b><br />
 ├─ 2.1 Arrays<br />
 ├── Program : Example array program 54<br />
