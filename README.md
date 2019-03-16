@@ -6,13 +6,13 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
  ./3.exe
 Program 編號先不打，等code打出來在賦予編號<br />
 ┌<b> Chapter 1. Basic Concepts (2019.03.16)</b><br />
-├─ Program 1.13: Program 1.11 with count statements   26
-├─ Program 1.15: Program 1.12 with count statements added   27
-├─ Program 1.17: Matrix addition with count statements   29
-├─ Program 1.1: Allocation and deallocation of memory
-├─ Program 1.2: Selection sort algorithm
-├─ Program 1.3: Comparison of two integers
-├─ Program 1.4: Searching an ordered list by binary search
+├─ Program 1.13: Program 1.11 with count statements   26<br />
+├─ Program 1.15: Program 1.12 with count statements added   27<br />
+├─ Program 1.17: Matrix addition with count statements   29<br />
+├─ Program 1.1: Allocation and deallocation of memory<br />
+├─ Program 1.2: Selection sort algorithm<br />
+├─ Program 1.3: Comparison of two integers<br />
+├─ Program 1.4: Searching an ordered list by binary search<br />
 ├<b> Chapter 2. Arrays & Structures</b><br />
 ├─ 2.1 Arrays<br />
 ├── Program : Example array program 54<br />
