@@ -2,6 +2,7 @@
 Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8242-3988)
 
  cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 1 Basic Concepts"
+ cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 2 Arrays & Structures"
  gcc 3.c -o 3
  ./3.exe
 Program 編號先不打，等code打出來在賦予編號<br />
@@ -14,7 +15,8 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├─ Program 1.3: Comparison of two integers<br />
 ├─ Program 1.4: Searching an ordered list by binary search<br />
 ├<b> Chapter 2. Arrays & Structures</b><br />
-├─ 2.1 Arrays<br />
+├─ 1-dimension array addressing<br />
+
 ├── Program : Example array program 54<br />
 ├── Program : One-dimensional array accessed by address 54<br />
 ├─ 2.2 Dynamically Allocated Arrays<br />
