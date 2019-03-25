@@ -16,30 +16,11 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├─ Program 1.4: Searching an ordered list by binary search<br />
 ├<b> Chapter 2. Arrays & Structures</b><br />
 ├─ 1-dimension array addressing<br />
-
-├── Program : Example array program 54<br />
-├── Program : One-dimensional array accessed by address 54<br />
-├─ 2.2 Dynamically Allocated Arrays<br />
-├── Program : Dynamically create a two-dimensional array 57<br />
-├─ 2.3 Structures and Unions<br />
-├── Program : Function to check equality of structures 61<br />
-├─ 2.4 Polynomials<br />
-├── Program : Initial version of _padd_ function 68<br />
-├── Program : Function to add two polynomials 70<br />
-├── Program : Function to add a new term 71<br />
-├─ 2.5 Spares Matrices<br />
-├── Program : Transpose of a sparse matrix 77<br />
-├── Program : Fast transpose of a sparse matrix 78<br />
-├── Program : Sparse matrix multiplication 82<br />
-├── Program : _storeSum_ function 82<br />
-├─ 2.6 Representation of Multidimensional Arrays<br />
-├─ 2.7 Strings<br />
-├── Program : String insertion function 92<br />
-├── Program : Pattern matching by checking end indices first 93<br />
-├── Program : Knuth, Morris, Pratt pattern matching algorithm 96<br />
-├── Program : Computing the failure function 97<br />
-├─ 2.8 References And Selected Readings<br />
-├─ 2.9 Additional Exercises<br />
+├─ Structures and Unions<br />
+├─ Self-Referential Structures<br />
+├─ Polynomial Addition - data structure 2<br />
+├─ Transpose matrix and fast transpose matrix<br />
+├─ Sparse Matrix Multiplication<br />
 ├<b> Chapter 3. Stacks and Queues</b><br />
 ├─ 3.1 Stacks<br />
 ├── Program : Add an item to a stack 111<br />
