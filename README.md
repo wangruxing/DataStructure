@@ -17,7 +17,6 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├<b> Chapter 2. Arrays & Structures</b><br />
 ├─ 1-dimension array addressing<br />
 ├─ Structures and Unions<br />
-├─ Self-Referential Structures<br />
 ├─ Polynomial Addition - data structure 2<br />
 ├─ Transpose matrix and fast transpose matrix<br />
 ├─ Sparse Matrix Multiplication<br />

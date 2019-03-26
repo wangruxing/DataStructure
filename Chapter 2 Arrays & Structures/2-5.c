@@ -45,7 +45,7 @@ int main(void) {
     a[8].row = 5;
     a[8].col = 2;
     a[8].value = 28;
-
+    
     transpose (a, b);
     printf("transpose\n");
     printf("before transpose  =>   after transpose\n");
@@ -54,7 +54,7 @@ int main(void) {
         printf("%3d  %3d  %5d        ", a[i].row, a[i].col, a[i].value);
         printf("%3d  %3d  %5d\n", b[i].row, b[i].col, b[i].value);
     }
-
+    
     fast_transpose(a, b);
     printf("\nfast_transpose\n");
     printf("before transpose  =>   after transpose\n");
@@ -66,21 +66,17 @@ int main(void) {
     return 0;
 }
 
-void transpose (term a[], term b[]) /* b is set to the transpose of a */
-{
+void transpose (term a[], term b[]){
     int n, i, j, currentb;
-    n = a[0].value; /* total number of elements */
-    b[0].row = a[0].col; /* rows in b = columns in a */
-    b[0].col = a[0].row; /* columns in b = rows in a */
+    n = a[0].value; 
+    b[0].row = a[0].col;
+    b[0].col = a[0].row;
     b[0].value = n;
-    if (n > 0) { /*non zero matrix */
+    if (n > 0) {
         currentb = 1;
         for (i = 0; i < a[0].col; i++){
-            /* transpose by columns in a */
-            for( j = 1; j <= n; j++){
-            /* find elements from the current column */
+            for(j = 1; j <= n; j++){
                 if (a[j].col == i) {
-                /* element is in current column, add it to b */
                     b[currentb].row = a[j].col;
                     b[currentb].col = a[j].row;
                     b[currentb].value = a[j].value;
@@ -91,9 +87,7 @@ void transpose (term a[], term b[]) /* b is set to the transpose of a */
     }
 }
 
-void fast_transpose(term a[], term b[])
-{
-    /* the transpose of a is placed in b */
+void fast_transpose(term a[], term b[]){
     int row_terms[MAX_COL], starting_pos[MAX_COL];
     int i, j;
     int num_cols = a[0].col;
@@ -101,16 +95,16 @@ void fast_transpose(term a[], term b[])
     b[0].row = num_cols; 
     b[0].col = a[0].row;
     b[0].value = num_terms;
-    if (num_terms > 0){ /*nonzero matrix*/
+    if (num_terms > 0){ 
         for (i = 0; i < num_cols; i++){
             row_terms[i] = 0;
         }
-        for (i = 1; i <= num_terms; i++){ /*計算 row_terms的值*/
+        for (i = 1; i <= num_terms; i++){
             row_terms[a[i].col]++;
         }
         starting_pos[0] = 1;
         for (i = 1; i < num_cols; i++){
-            starting_pos[i]=starting_pos[i-1] +row_terms [i-1];/*計算 starting_pos的值*/
+            starting_pos[i]=starting_pos[i-1] +row_terms [i-1];
         }
         for (i = 1; i <= num_terms; i++){
             j = starting_pos[a[i].col]++;

@@ -4,7 +4,7 @@
 #include <string.h>
 
 #define COMPARE(x, y) ((x < y) ? -1: (x == y)? 0: 1)
-// Polynomial Addition - data structure 1
+// Polynomial Addition - data structure 2
 
 #define MAX_TERMS 100
 typedef struct {
@@ -50,18 +50,17 @@ int main(void) {
     }
     return 0;
 }
-void padd (int starta, int finisha, int startb, int finishb,int startd, int finishd)
-{
-/* add A(x) and B(x) to obtain D(x) */
+
+void padd (int starta, int finisha, int startb, int finishb,int startd, int finishd){
     float coefficient;
     startd = avail;
     while (starta <= finisha && startb <= finishb){
         switch (COMPARE(terms[starta].expon,terms[startb].expon)) {
-            case -1: /* a expon < b expon */
+            case -1: 
                 attach(terms[startb].coef, terms[startb].expon);
                 startb++;
                 break;
-            case 0: /* equal exponents */
+            case 0: 
                 coefficient = terms[starta].coef + terms[startb].coef;
                 if (coefficient){
                     attach (coefficient, terms[starta].expon);
@@ -69,7 +68,7 @@ void padd (int starta, int finisha, int startb, int finishb,int startd, int fini
                     startb++;
                 }   
                 break;
-            case 1: /* a expon > b expon */
+            case 1:
                 attach(terms[starta].coef, terms[starta].expon);
                 starta++;
         }
@@ -85,9 +84,7 @@ void padd (int starta, int finisha, int startb, int finishb,int startd, int fini
     }     
 }
 
-void attach(float coefficient, int exponent)
-{
-    /* add a new term to the polynomial */
+void attach(float coefficient, int exponent){
     if (avail >= MAX_TERMS) {
         fprintf(stderr, "Too many terms in the polynomial\n");
         exit(1);

@@ -2,11 +2,10 @@
 #include <stdlib.h> /* 亂數相關函數 */
 #include <time.h>   /* 時間相關函數 */
 #include <string.h>
-
+// enum http://karosesblog.blogspot.com/2013/04/c-enum.html
 // Implementation structure and unions
 typedef struct {
-    // enum http://karosesblog.blogspot.com/2013/04/c-enum.html
-    enum tag_field {female, male} sex;
+    enum {female, male} sex;
     union {
         int children;
         int beard;

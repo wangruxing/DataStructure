@@ -57,8 +57,7 @@ int main(void) {
     }
     return 0;
 }
-void storeSum(term d[], int *totalD, int row, int column, int *sum)
-{
+void storeSum(term d[], int *totalD, int row, int column, int *sum){
     /* if *sum != 0, then it along with its row and column
     position is stored as the *totald+1 entry in d */
     if (*sum){
@@ -74,8 +73,7 @@ void storeSum(term d[], int *totalD, int row, int column, int *sum)
     }
 }
 
-void fast_transpose(term a[], term b[])
-{
+void fast_transpose(term a[], term b[]){
     /* the transpose of a is placed in b */
     int row_terms[MAX_COL], starting_pos[MAX_COL];
     int i, j;
@@ -105,7 +103,6 @@ void fast_transpose(term a[], term b[])
 }
 
 void mmult (term a[], term b[], term d[]){
-/* multiply two sparse matrices */
     int i, j, column, totalB = b[0].value, totalD = 0;
     int rowsA = a[0].row;
     int colsA = a[0].col;
@@ -113,49 +110,46 @@ void mmult (term a[], term b[], term d[]){
     int colsB = b[0].col;
     int rowBegin = 1, row = a[1].row, sum;
     if (colsA != b[0].row){
-    /*compare the row of a and the col of b*/
         fprintf (stderr, "Incompatible matrices\n");
         exit (1);
     }
-    fast_transpose(b, newB); /* the transpose of b is placed in new_b */
-    /* set boundary condition */
-    a[totalA+1].row = rowsA; /* a[0].row*/
+    fast_transpose(b, newB); 
+    a[totalA+1].row = rowsA; 
     newB[totalB+1].row = colsB;
     newB[totalB+1].col = 0;
-    for (i = 1; i <= totalA; ) { /* totalA = a[0].val */
-        column = newB[1].row; /* b[1].col*/
+    for (i = 1; i <= totalA; ) {
+        column = newB[1].row;
         sum = 0;
-        for (j = 1; j <= totalB+1;) { /* totalB = b[0].val*/
-        /* mutiply row of a by column of b */
-            if (a[i].row != row) { /* row = a[1].row */
+        for (j = 1; j <= totalB+1;) {
+            if (a[i].row != row) { 
                 storeSum(d, &totalD, row, column, &sum);
                 i = rowBegin;
                 for (; newB[j].row == column; j++)
                     ;
                 column =newB[j].row;
             }
-            else if(newB[j].row != column){ /* column = newB[1].row */
+            else if(newB[j].row != column){
                 storeSum(d, &totalD, row, column, &sum);
                 i = rowBegin;
                 column = newB[j].row;
             }
             else switch (COMPARE (a[i].col, newB[j].col)) {
-                case -1: /* go to next term in a */
+                case -1: 
                     i++; 
                     break;
-                case 0: /* add terms, go to next term in a and b */
+                case 0: 
                     sum = (a[i++].value * newB[j++].value);
                     break;
-                case 1: /* advance to next term in b*/
+                case 1: 
                     j++;
             }
-        } /* end of for j <= totalb+1 */
+        }
         for (; a[i].row == row; i++)
             ;
         rowBegin = i; row = a[i].row;
-    } /* end of for i <=totala */
-    d[0].row = rowsA; /* a[0].row*/
-    d[0].col = colsB; /* b[0].cols*/
+    } 
+    d[0].row = rowsA; 
+    d[0].col = colsB; 
     d[0].value = totalD;
 } 
 

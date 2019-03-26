@@ -13,7 +13,8 @@ void print1(int *ptr, int rows){
     int i;
     printf("Address      Contents\n");
     for(i = 0;i < rows;i++){
-        // %08u = 八位數的十進位，不足以0
+        // %08u = 八位數的無符號十進位整數，不足以0填滿
+        // %5d = 五位數的整數，不足以空白填滿
         printf("%08u %5d\n", ptr+i, *(ptr+i));
     }
 }
