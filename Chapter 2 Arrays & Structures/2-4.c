@@ -3,92 +3,114 @@
 #include <time.h>   /* 時間相關函數 */
 #include <string.h>
 
-#define COMPARE(x, y) ((x < y) ? -1: (x == y)? 0: 1)
-// Polynomial Addition - data structure 2
+#define MAX_TERMS 101 /* maximum number of terms +1*/
+#define MAX_COL 101 
 
-#define MAX_TERMS 100
 typedef struct {
-    float coef;
-    int expon;
-} polynomial;
-polynomial terms[MAX_TERMS];
-int avail = 6;
+    int row;
+    int col;    
+    int value;
+} term;
+term a[MAX_TERMS];
+term b[MAX_TERMS];
 
-void padd(int, int, int, int, int, int);
-void attach(float, int);
-
+void transpose (term a[], term b[]);
+void fast_transpose(term a[], term b[]);
+// Transpose matrix and fast transpose matrix
 int main(void) {
-    /*
-    A(X)=2(X^1000)+1
-    B(X)=X^4+10X^3+3X^2+1
-    */
-    terms[0].coef = 2;
-    terms[0].expon = 1000;
-    terms[1].coef = 1;
-    terms[1].expon = 0;
-    terms[2].coef = 1;
-    terms[2].expon = 4;
-    terms[3].coef = 10;
-    terms[3].expon = 3;
-    terms[4].coef = 3;
-    terms[4].expon = 2;
-    terms[5].coef = 1;
-    terms[5].expon = 0;
+    a[0].row = 6;
+    a[0].col = 6;
+    a[0].value = 8;
+    a[1].row = 0;
+    a[1].col = 0;
+    a[1].value = 15;
+    a[2].row = 0;
+    a[2].col = 3;
+    a[2].value = 22;
+    a[3].row = 0;
+    a[3].col = 5;
+    a[3].value = -15;
+    a[4].row = 1;
+    a[4].col = 1;
+    a[4].value = 11;
+    a[5].row = 1;
+    a[5].col = 2;
+    a[5].value = 3;
+    a[6].row = 2;
+    a[6].col = 3;
+    a[6].value = -6;
+    a[7].row = 4;
+    a[7].col = 0;
+    a[7].value = 91;
+    a[8].row = 5;
+    a[8].col = 2;
+    a[8].value = 28;
     
-    padd(0,1,2,5,0,0);
-    printf("i    \t");
-    for(int i = 0;i < 11;i++){
-        printf("%2d\t", i);
+    transpose (a, b);
+    printf("transpose\n");
+    printf("before transpose  =>   after transpose\n");
+    printf("row  col  value   =>   row  col  value\n");
+    for(int i = 0;i < 9;i++){
+        printf("%3d  %3d  %5d        ", a[i].row, a[i].col, a[i].value);
+        printf("%3d  %3d  %5d\n", b[i].row, b[i].col, b[i].value);
     }
-    printf("\ncoef \t");
-    for(int i = 0;i < 11;i++){
-        printf("%2.0f\t", terms[i].coef);
-    }
-    printf("\nexpon\t");
-    for(int i = 0;i < 11;i++){
-        printf("%2d\t", terms[i].expon);
+    
+    fast_transpose(a, b);
+    printf("\nfast_transpose\n");
+    printf("before transpose  =>   after transpose\n");
+    printf("row  col  value   =>   row  col  value\n");
+    for(int i = 0;i < 9;i++){
+        printf("%3d  %3d  %5d        ", a[i].row, a[i].col, a[i].value);
+        printf("%3d  %3d  %5d\n", b[i].row, b[i].col, b[i].value);
     }
     return 0;
 }
 
-void padd (int starta, int finisha, int startb, int finishb,int startd, int finishd){
-    float coefficient;
-    startd = avail;
-    while (starta <= finisha && startb <= finishb){
-        switch (COMPARE(terms[starta].expon,terms[startb].expon)) {
-            case -1: 
-                attach(terms[startb].coef, terms[startb].expon);
-                startb++;
-                break;
-            case 0: 
-                coefficient = terms[starta].coef + terms[startb].coef;
-                if (coefficient){
-                    attach (coefficient, terms[starta].expon);
-                    starta++;
-                    startb++;
-                }   
-                break;
-            case 1:
-                attach(terms[starta].coef, terms[starta].expon);
-                starta++;
+void transpose (term a[], term b[]){
+    int n, i, j, currentb;
+    n = a[0].value; 
+    b[0].row = a[0].col;
+    b[0].col = a[0].row;
+    b[0].value = n;
+    if (n > 0) {
+        currentb = 1;
+        for (i = 0; i < a[0].col; i++){
+            for(j = 1; j <= n; j++){
+                if (a[j].col == i) {
+                    b[currentb].row = a[j].col;
+                    b[currentb].col = a[j].row;
+                    b[currentb].value = a[j].value;
+                    currentb++;
+                }
+            }
         }
     }
-    /* add in remaining terms of A(x) */
-    for( ; starta <= finisha; starta++){
-        attach(terms[starta].coef, terms[starta].expon);
-    }    
-    /* add in remaining terms of B(x) */
-    for( ; startb <= finishb; startb++){
-        attach(terms[startb].coef, terms[startb].expon);
-        finishd =avail -1;
-    }     
 }
 
-void attach(float coefficient, int exponent){
-    if (avail >= MAX_TERMS) {
-        fprintf(stderr, "Too many terms in the polynomial\n");
-        exit(1);
+void fast_transpose(term a[], term b[]){
+    int row_terms[MAX_COL], starting_pos[MAX_COL];
+    int i, j;
+    int num_cols = a[0].col;
+    int num_terms = a[0].value;
+    b[0].row = num_cols; 
+    b[0].col = a[0].row;
+    b[0].value = num_terms;
+    if (num_terms > 0){ 
+        for (i = 0; i < num_cols; i++){
+            row_terms[i] = 0;
+        }
+        for (i = 1; i <= num_terms; i++){
+            row_terms[a[i].col]++;
+        }
+        starting_pos[0] = 1;
+        for (i = 1; i < num_cols; i++){
+            starting_pos[i]=starting_pos[i-1] +row_terms [i-1];
+        }
+        for (i = 1; i <= num_terms; i++){
+            j = starting_pos[a[i].col]++;
+            b[j].row = a[i].col;
+            b[j].col = a[i].row;
+            b[j].value = a[i].value;   
+        }
     }
-    terms[avail].coef = coefficient;
-    terms[avail++].expon = exponent;
 }
