@@ -3,10 +3,10 @@
 #include <time.h>   /* 時間相關函數 */
 #include <string.h>
 
+#define MAX_TERMS 100
 #define COMPARE(x, y) ((x < y) ? -1: (x == y)? 0: 1)
 // Polynomial Addition - data structure 2
 
-#define MAX_TERMS 100
 typedef struct {
     float coef;
     int expon;
@@ -36,6 +36,7 @@ int main(void) {
     terms[5].expon = 0;
     
     padd(0,1,2,5,0,0);
+    printf("Result\n");
     printf("i    \t");
     for(int i = 0;i < 11;i++){
         printf("%2d\t", i);
@@ -55,32 +56,106 @@ void padd (int starta, int finisha, int startb, int finishb,int startd, int fini
     float coefficient;
     startd = avail;
     while (starta <= finisha && startb <= finishb){
+        printf("starta=%d, finisha=%d, startb=%d, finishb=%d\n", starta, finisha, startb, finishb);
         switch (COMPARE(terms[starta].expon,terms[startb].expon)) {
             case -1: 
+                printf("(terms[%d].expon=%d) < (terms[%d].expon=%d)\n", starta, terms[starta].expon, startb, terms[startb].expon);
                 attach(terms[startb].coef, terms[startb].expon);
+                printf("i    \t");
+                for(int i = 0;i < avail;i++){
+                    printf("%2d\t", i);
+                }
+                printf("\ncoef \t");
+                for(int i = 0;i < avail;i++){
+                    printf("%2.0f\t", terms[i].coef);
+                }
+                printf("\nexpon\t");
+                for(int i = 0;i < avail;i++){
+                    printf("%2d\t", terms[i].expon);
+                }
+                printf("\n");
                 startb++;
+                printf("startb=%d\n", startb);
                 break;
-            case 0: 
+            case 0:
+                printf("(terms[%d].expon=%d) = (terms[%d].expon=%d)\n", starta, terms[starta].expon, startb, terms[startb].expon); 
                 coefficient = terms[starta].coef + terms[startb].coef;
+                printf("coefficient=%d\n", coefficient);
                 if (coefficient){
                     attach (coefficient, terms[starta].expon);
+                    printf("i    \t");
+                    for(int i = 0;i < avail;i++){
+                        printf("%2d\t", i);
+                    }
+                    printf("\ncoef \t");
+                    for(int i = 0;i < avail;i++){
+                        printf("%2.0f\t", terms[i].coef);
+                    }
+                    printf("\nexpon\t");
+                    for(int i = 0;i < avail;i++){
+                        printf("%2d\t", terms[i].expon);
+                    }
+                    printf("\n");
                     starta++;
                     startb++;
+                    printf("starta=%d\tstartb=%d\n", starta, startb);
                 }   
                 break;
             case 1:
+                printf("(terms[%d].expon=%d) > (terms[%d].expon=%d)\n", starta, terms[starta].expon, startb, terms[startb].expon); 
                 attach(terms[starta].coef, terms[starta].expon);
+                printf("i    \t");
+                for(int i = 0;i < avail;i++){
+                    printf("%2d\t", i);
+                }
+                printf("\ncoef \t");
+                for(int i = 0;i < avail;i++){
+                    printf("%2.0f\t", terms[i].coef);
+                }
+                printf("\nexpon\t");
+                for(int i = 0;i < avail;i++){
+                    printf("%2d\t", terms[i].expon);
+                }
+                printf("\n");
                 starta++;
+                printf("starta=%d\n", starta);
         }
+        printf("-------------------------------------------------------------------------------------------\n");
     }
     /* add in remaining terms of A(x) */
     for( ; starta <= finisha; starta++){
         attach(terms[starta].coef, terms[starta].expon);
+        printf("i    \t");
+        for(int i = 0;i < avail;i++){
+            printf("%2d\t", i);
+        }
+        printf("\ncoef \t");
+        for(int i = 0;i < avail;i++){
+            printf("%2.0f\t", terms[i].coef);
+        }
+        printf("\nexpon\t");
+        for(int i = 0;i < avail;i++){
+            printf("%2d\t", terms[i].expon);
+        }
+        printf("\n");
     }    
     /* add in remaining terms of B(x) */
     for( ; startb <= finishb; startb++){
         attach(terms[startb].coef, terms[startb].expon);
+        printf("i    \t");
+        for(int i = 0;i < avail;i++){
+            printf("%2d\t", i);
+        }
+        printf("\ncoef \t");
+        for(int i = 0;i < avail;i++){
+            printf("%2.0f\t", terms[i].coef);
+        }
+        printf("\nexpon\t");
+        for(int i = 0;i < avail;i++){
+            printf("%2d\t", terms[i].expon);
+        }
         finishd =avail -1;
+        printf("\nfinishd=%d\n", finishd);
     }     
 }
 

@@ -18,7 +18,8 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├─ 1-dimension array addressing<br />
 ├─ Structures and Unions<br />
 ├─ Polynomial Addition - data structure 2<br />
-├─ Transpose matrix and fast transpose matrix<br />
+├─ Transpose matrix<br />
+├─ Fast transpose matrix<br />
 ├─ Sparse Matrix Multiplication<br />
 ├<b> Chapter 3. Stacks and Queues</b><br />
 ├─ 3.1 Stacks<br />
