@@ -10,11 +10,7 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├─ Program 1.13: Program 1.11 with count statements   26<br />
 ├─ Program 1.15: Program 1.12 with count statements added   27<br />
 ├─ Program 1.17: Matrix addition with count statements   29<br />
-├─ Program 1.1: Allocation and deallocation of memory<br />
-├─ Program 1.2: Selection sort algorithm<br />
-├─ Program 1.3: Comparison of two integers<br />
-├─ Program 1.4: Searching an ordered list by binary search<br />
-├<b> Chapter 2. Arrays & Structures</b><br />
+├<b> Chapter 2. Arrays & Structures (2019.03.28)</b><br />
 ├─ 1-dimension array addressing<br />
 ├─ Structures and Unions<br />
 ├─ Polynomial Addition - data structure 2<br />
