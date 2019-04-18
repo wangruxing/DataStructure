@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h> /* 亂數相關函數 */
-#include <time.h>   /* 時間相關函數 */
+#include <stdlib.h> /* Random correlation function */
+#include <time.h>   /* Time correlation function */
 #include <string.h>
 #define MAX_COL 101 
 #define MAX_TERMS 101 /* maximum number of terms +1*/
@@ -82,16 +82,16 @@ void fast_transpose(term a[], term b[]){
     b[0].row = num_cols; 
     b[0].col = a[0].row;
     b[0].value = num_terms;
-    if (num_terms > 0){ /*nonzero matrix*/
+    if (num_terms > 0){ /* nonzero matrix */
         for (i = 0; i < num_cols; i++){
             row_terms[i] = 0;
         }
-        for (i = 1; i <= num_terms; i++){ /*計算 row_terms的值*/
+        for (i = 1; i <= num_terms; i++){ /* Calculation row_terms */
             row_terms[a[i].col]++;
         }
         starting_pos[0] = 1;
         for (i = 1; i < num_cols; i++){
-            starting_pos[i]=starting_pos[i-1] +row_terms [i-1];/*計算 starting_pos的值*/
+            starting_pos[i]=starting_pos[i-1] +row_terms [i-1];/* Calculation starting_pos */
         }
         for (i = 1; i <= num_terms; i++){
             j = starting_pos[a[i].col]++;

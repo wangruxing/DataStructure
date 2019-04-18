@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h> /* 亂數相關函數 */
-#include <time.h>   /* 時間相關函數 */
+#include <stdlib.h> /* Random correlation function */
+#include <time.h>   /* Time correlation function */
 #include <string.h>
-// enum http://karosesblog.blogspot.com/2013/04/c-enum.html
+
 // Implementation structure and unions
 typedef struct {
     enum {female, male} sex;

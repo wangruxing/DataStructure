@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h> /* 亂數相關函數 */
-#include <time.h>   /* 時間相關函數 */
+#include <stdlib.h> /* Random correlation function */
+#include <time.h>   /* Time correlation function */
 
 # define MAX_SIZE 5
 // Program 1.17: Matrix addition with count statements   29

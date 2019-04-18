@@ -3,6 +3,7 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 
  cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 1 Basic Concepts"
  cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 2 Arrays & Structures"
+ cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 3 Stacks and Queues"
  gcc 3.c -o 3
  ./3.exe
 Program 編號先不打，等code打出來在賦予編號<br />
@@ -18,31 +19,12 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├─ Fast transpose matrix<br />
 ├─ Sparse Matrix Multiplication<br />
 ├<b> Chapter 3. Stacks and Queues</b><br />
-├─ 3.1 Stacks<br />
-├── Program : Add an item to a stack 111<br />
-├── Program : Delete from a stack 111<br />
-├── Program : Satck full 111<br />
-├─ 3.2 Stacks Using Dynamic Arrays<br />
-├── Program : Satck full with array doubling 113<br />
-├─ 3.3 Queues<br />
-├── Program : Add to a queue 116<br />
-├── Program : Delete from a queue 116<br />
-├── Program : Add to a circular queue 118<br />
-├── Program : Delete from a circular queue 119<br />
-├─ 3.4 Circular Queues Using Dynamic Arrays<br />
-├─ 3.5 A Mazing Problem<br />
-├── Program : Add to a circular queue 122<br />
-├── Program : Doubling queue capacity 122<br />
-├── Program : Initial maze algorithm 126<br />
-├─ 3.6 Evaluation of Expressions<br />
-├── Program : Maze search function 128<br />
-├── Program : Function to evaluate a postfix expression 133<br />
-├── Program : Function to get a token from the input string 134<br />
-├── Program : Function to convert from infix to postfix 137<br />
-├─ 3.7 Multiple Stacks and Queues<br />
-├── Program : Add an item to the _i_ th stack 140<br />
-├── Program : Delete an item from the _i_ th stack 141<br />
-├─ 3.8 Additional Exercises<br />
+├─ Implementation stack<br />
+├─ Implementation queue<br />
+├─ Implementation queue: regard an array as a circular queue<br />
+├─ A Mazing Problem<br />
+├─ infix --> postfix<br />
+├─ infix --> prefix<br />
 ├<b> Chapter 4. Linked Lists</b><br />
 ├─ 4.1 Singly Linked Lists and Chains<br />
 ├─ 4.2 Representation Chain in C<br />

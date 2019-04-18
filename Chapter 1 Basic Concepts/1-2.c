@@ -1,18 +1,18 @@
 #include <stdio.h>
-#include <stdlib.h> /* 亂數相關函數 */
-#include <time.h>   /* 時間相關函數 */
+#include <stdlib.h> /* Random correlation function */
+#include <time.h>   /* Time correlation function */
 
 // Program 1.15: Program 1.12 with count statements added   27
 int rsum(int[], int, int);
 int main(void) {
     int n = 5;
     printf("n=%d\n", n);
-    // 亂數種子
+    // Random seed
     srand( time(NULL) );
-    // 指定亂數範圍
+    // Random range
     int min = 1;
     int max = n+100;
-    // 隨機產生n個整數
+    // Randomly generate integers
     int list[n];
     for(int i = 0;i < n;i++){
         list[i] = rand() % (max - min + 1) + min;
