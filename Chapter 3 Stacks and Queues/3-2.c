@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h> /* Random correlation function */
+#include <stdlib.h> 
 
 // Implementation queue
 struct queueNode{

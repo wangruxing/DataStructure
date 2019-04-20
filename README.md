@@ -21,8 +21,8 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├<b> Chapter 3. Stacks and Queues</b><br />
 ├─ Implementation stack<br />
 ├─ Implementation queue<br />
-├─ Implementation queue: regard an array as a circular queue<br />
-├─ A Mazing Problem<br />
+├─ Implementation circular queue<br />
+├─ A Mazing Problem (2019.04.20)<br />
 ├─ infix --> postfix<br />
 ├─ infix --> prefix<br />
 ├<b> Chapter 4. Linked Lists</b><br />
