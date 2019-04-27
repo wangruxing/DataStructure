@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #define SIZE 5
 
 // Implementation circular queue

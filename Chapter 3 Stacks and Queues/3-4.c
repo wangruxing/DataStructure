@@ -6,6 +6,7 @@
 #define MAP_WIDTH 6
 #define EXIT_ROW MAP_LENGTH-2
 #define EXIT_COL MAP_WIDTH-2
+
 // A Mazing Problem
 // Walking directions
 typedef struct {
@@ -13,7 +14,6 @@ typedef struct {
     short int horiz;
 }offsets;
 offsets move[8];
-
 
 typedef struct {
     short int row;
@@ -35,6 +35,7 @@ short int top = -1;
 int map[MAP_LENGTH][MAP_WIDTH];
 int mark[MAP_LENGTH][MAP_WIDTH];
 char resultMap[MAP_LENGTH][MAP_WIDTH];
+
 int main(void) {
     initMap();
     path();
