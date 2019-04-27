@@ -6,7 +6,7 @@
 
 // infix --> postfix
 // 1. 須寫上註解
-// 2. 做成使用者輸入中置式
+// 2. 逐步輸出過程
 // 3. 最好將變數統一跟課本相近
 typedef enum {lparen, rparen, plus, minus, times, divide, 
 	mod, eos, operand, blank } precedence;
@@ -214,10 +214,14 @@ int eval(void){
 }
 
 int main(){
-	strcpy(expr, "36+72*435/(2+3)");
-	printf("%s", expr);
+    char str[80];
+    printf("%s", "Please input infix: ");
+    scanf("%s", str);
+
+	strcpy(expr, str);
+	printf("infix  : %s", expr);
 	postfix();
-	printf("%s\n", result);
+	printf("postfix: %s\n", result);
 	strcpy(eexpr, result);
-	printf("%d\n", eval());
+	printf("result : %d\n", eval());
 }
