@@ -1,117 +1,73 @@
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h> /* Random correlation function */
+#include <time.h>   /* Time correlation function */
+#include <string.h>
 
-// Implementation queue
-struct queueNode{
-    int data;
-    struct queueNode *nextPtr;
-};
+#define MAX_QUEUE_SIZE 100 /* maximum stack size */
 
-typedef struct queueNode QueueNode;
-typedef QueueNode *QueueNodePtr;
+// Implementation stack by array
+int stack[MAX_QUEUE_SIZE];
+int rear = -1;
+int front = -1;
 
-void printQueue(QueueNodePtr currentPtr);
-int isEmpty(QueueNodePtr headPtr);
-char dequeue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr);
-void enqueue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr, char value);
-void instructions(void);
+int isEmpty();
+int isFull();
+int enqueue(int rear, int value); 
+int dequeue(int rear, int front);
 
-int main(void) {
-    QueueNodePtr headPtr = NULL;
-    QueueNodePtr tailPtr = NULL;
-    unsigned int choice;
-    char item;
-
-    instructions();
-    printf("%s", "? ");
-    scanf("%u", &choice);
-
-    while(choice != 3){
-        switch (choice){
-            case 1:
-                printf("%s", "Enter a character: ");
-                scanf("\n%c", &item);
-                enqueue(&headPtr, &tailPtr, item);
-                printQueue(headPtr);
-                break;
-            case 2:
-                if(!isEmpty(headPtr)){
-                    item = dequeue(&headPtr, &tailPtr);
-                    printf("%c has been dequeued.\n", item);
-                }
-                printQueue(headPtr);
-                break;
-            default:
-                puts("Invalid choice.\n");
-                instructions();
-                break;
+int main(int argc, char *argv[]) {
+	int value;
+	int i;
+    printf("Current front = %d, rear = %d\n", front, rear);
+	printf("Please enter 10 data in sequence:\n");
+	for(i=0;i<10;i++){
+		scanf("%d",&value);
+		rear = enqueue(rear, value);
+        printf("Current queue: ");
+        for(int j = front+1;j <= rear;j++){
+            printf("%d ", stack[j]);
         }
-        printf("%s", "? ");
-        scanf("%u", &choice);
-    }
-    puts("End of run.");
-}
-
-// Display interface to user
-void instructions(void){
-    puts("Enter choice:\n"
-    "1 to add an item to the queue\n"
-    "2 to remove an item to the queue\n"
-    "3 to end program");
-}
-
-// insert a item at the tail of the queue
-void enqueue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr, char value){
-    QueueNodePtr newPtr;
-    newPtr = malloc(sizeof(QueueNode));
-    if(newPtr != NULL){
-        newPtr->data = value;
-        newPtr->nextPtr = NULL;
-        
-        if(isEmpty(*headPtr)){
-            *headPtr = newPtr;
-        }else{
-            (*tailPtr)->nextPtr = newPtr;
+        printf(". front = %d, rear = %d\n", front, rear);
+	}
+	printf("====================\n");
+    printf("The queue dequeue sequence is: \n"); 
+	while(!isEmpty()){
+		front = dequeue(rear, front); 
+        printf("Current queue: ");
+        for(int j = front+1;j <= rear;j++){
+            printf("%d ", stack[j]);
         }
-        *tailPtr = newPtr;
-    }
-    else{
-        printf("%c not inserted. No memory available.\n", value);
-    }
+        printf(". front = %d, rear = %d\n\n", front, rear);
+	}
+	return 0;
 }
 
-// Remove a item from the head of queue
-char dequeue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr){
-    char value;
-    QueueNodePtr tempPtr;
+int isEmpty(){
+	if(rear == front){
+		return 1; 
+	}else{
+		return 0;
+	}
+} 
 
-    value = (*headPtr)->data;
-    tempPtr = *headPtr;
-    *headPtr = (*headPtr)->nextPtr;
+int enqueue(int rear, int value){
+	if(rear == MAX_QUEUE_SIZE){
+		printf("Queue is full.\n");	
+	}else{
+		rear++;
+		stack[rear] = value;
+	}
+    return rear;
+} 
 
-    if(*headPtr == NULL){
-        *tailPtr = NULL;
-    }
-    free(tempPtr);
-    return value;
-}
-
-// Return 1 if the queue is empty, 0 otherwise
-int isEmpty(QueueNodePtr headPtr){
-    return headPtr == NULL;
-}
-
-// Print queue
-void printQueue(QueueNodePtr currentPtr){
-    if(currentPtr == NULL){
-        puts("Queue is empty.\n");
-    }
-    else{
-        puts("The queue is: ");
-        while(currentPtr != NULL){
-            printf("%c --> ", currentPtr->data);
-            currentPtr = currentPtr->nextPtr;
-        }
-        puts("NULL\n");
-    }
+int dequeue(int rear, int front){
+	int value;
+	if(isEmpty()){
+		printf("Queue is empty.\n");
+	}else{
+        front++;
+		value = stack[front];
+        printf("dequeue value = %d\n",value); 
+		return front; 
+	}
 }

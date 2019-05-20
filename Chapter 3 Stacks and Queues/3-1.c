@@ -1,108 +1,71 @@
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h> /* Random correlation function */
+#include <time.h>   /* Time correlation function */
+#include <string.h>
 
-// Implementation stack
-struct stackNode{
-    int data;
-    struct stackNode *nextPtr;
-};
+#define MAX_STACK_SIZE 100 /* maximum stack size */
 
-typedef struct stackNode StackNode;
-typedef StackNode *StackNodePtr;
+// Implementation stack by array
+int stack[MAX_STACK_SIZE];
+int top = -1;
 
-void push(StackNodePtr *topPtr, int info);
-int pop(StackNodePtr *topPtr);
-int isEmpty(StackNodePtr topPtr);
-void PrintStack(StackNodePtr currentPtr);
-void instructions(void);
+int isEmpty();
+void push(int top); 
+int pop();
 
-
-int main(void) {
-    StackNodePtr stackPtr = NULL;
-    unsigned int choice;
-    int value;
-
-    instructions();
-    printf("%s", "? ");
-    scanf("%u", &choice);
-
-    while(choice != 3){
-        switch(choice){
-            case 1:
-                printf("%s", "Enter an integer: ");
-                scanf("%d", &value);
-                push(&stackPtr, value);
-                PrintStack(stackPtr);
-                break;
-            case 2:
-                if(!isEmpty(stackPtr)){
-                    printf("The popped value is %d.\n", pop(&stackPtr));
-                }
-                PrintStack(stackPtr);
-                break;
-            default:
-                puts("Invalid choice.\n");
-                instructions();
-                break;
+int main(int argc, char *argv[]) {
+	int value;
+	int i;
+    printf("Current top = %d\n", top);
+	printf("Please enter 10 data in sequence:\n");
+	for(i=0;i<10;i++){
+		scanf("%d",&value);
+		push(value);
+        printf("Current stack: ");
+        for(int j = 0;j <= top;j++){
+            printf("%d ", stack[j]);
         }
-        printf("%s", "? ");
-        scanf("%u", &choice);
-    }
-    puts("End of run.");
-}
+        printf(". top = %d\n", top);
+	}
 
-// Display interface to user
-void instructions(void){
-    puts("Enter choice:\n"
-    "1 to push a value on the stack\n"
-    "2 to pop a value off the stack\n"
-    "3 to end program");
-}
-
-// Insert a node at the top of the stack
-void push(StackNodePtr *topPtr, int info){
-    StackNodePtr newPtr;
-    newPtr = malloc(sizeof(StackNode));
-
-    if(newPtr != NULL){
-        newPtr->data = info;
-        newPtr->nextPtr = *topPtr;
-        *topPtr = newPtr;
-    }
-    else{
-        printf("%d not inserted. No memory available.\n", info);
-    }
-}
-
-// Remove a node from the top of stack
-int pop(StackNodePtr *topPtr){
-    StackNodePtr tempPtr;
-    int popValue;
-
-    tempPtr = *topPtr;
-    popValue = (*topPtr)->data;
-    *topPtr = (*topPtr)->nextPtr;
-    free(tempPtr);
-    return popValue;
-}
-
-// Print satck
-void PrintStack(StackNodePtr currentPtr){
-    if(currentPtr == NULL){
-        puts("The stack is empty.\n");
-    }
-    else{
-        puts("The stack is:");
-
-        while(currentPtr != NULL){
-            printf("%d --> ", currentPtr->data);
-            currentPtr = currentPtr->nextPtr;
+	printf("============================================================\n");
+    printf("The stack pop sequence is: \n"); 
+	while(!isEmpty()){
+		printf("pop value = %d\n",pop());
+        printf("Current stack: ");
+        for(int j = 0;j <= top;j++){
+            printf("%d ", stack[j]);
         }
-        puts("NULL\n");
-    }
+        printf(". top = %d\n\n", top);    
+	}
+    
+	return 0;
 }
 
-// Return 1 if the stack is empty, 0 otherwise
-int isEmpty(StackNodePtr topPtr){
-    return topPtr == NULL;
+int isEmpty(){
+	if(top == -1){
+		return 1; 
+	}else{
+		return 0;
+	}
+} 
+
+void push(int data){
+	if(top >= MAX_STACK_SIZE){
+		printf("Stack is full.\n");	
+	}else{
+		top++;
+		stack[top]=data;
+	}
+} 
+
+int pop(){
+	int data;
+	if(isEmpty()){
+		printf("Stack is empty.\n");
+	}else{
+		data=stack[top--];
+		return data; 
+	}
 }
+

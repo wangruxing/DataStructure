@@ -19,48 +19,19 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├─ Fast transpose matrix<br />
 ├─ Sparse Matrix Multiplication<br />
 ├<b> Chapter 3. Stacks and Queues</b><br />
-├─ Implementation stack<br />
-├─ Implementation queue<br />
+├─ Implementation stack by array<br />
+├─ Implementation queue by array<br />
 ├─ Implementation circular queue<br />
 ├─ A Mazing Problem<br />
 ├─ infix --> postfix (2019.04.27 還需補充)<br />
-├─ infix --> prefix<br />
 ├<b> Chapter 4. Linked Lists</b><br />
-├─ 4.1 Singly Linked Lists and Chains<br />
-├─ 4.2 Representation Chain in C<br />
-├── Program : Create a two-node list 152<br />
-├── Program : Simple insert into front of list 153<br />
-├── Program : Deletion from a list 155<br />
-├── Program : Printing a list 155<br />
-├─ 4.3 Linked Stacks and Queues<br />
-├── Program : Add to a linked stack 158<br />
-├── Program : Delete from a linked stack 158<br />
-├── Program : Add to a rear of a linked queue 159<br />
-├── Program : Delete from the front of a linked queue 160<br />
-├─ 4.4 Polynomials<br />
-├── Program : Add two polynomials 163<br />
-├── Program : Attach a node to the end of a list 164<br />
-├── Program : Erasing a polynomial 166<br />
-├── Program : _getNode_ function 167<br />
-├── Program : _resNode_ function 167<br />
-├── Program : Erasing a circular list 168<br />
-├── Program : Adding two polynomials represented as circular lists with header nodes 169<br />
-├─ 4.5 Additional List Operations<br />
-├── Program : Inverting a singly linked list 171<br />
-├── Program : Concatenating singly linked lists 172<br />
-├── Program : Inserting at the front of a list 173<br />
-├── Program : Finding the length of a circular list 173<br />
-├─ 4.6 Equivalence Classes<br />
-├── Program : First pass at equivalence algorithm 175<br />
-├── Program : A more detailed version of the equivalence algorithm 176<br />
-├── Program : Program to find equivalence calsses 178<br />
-├─ 4.7 Sparse Matrices<br />
-├── Program : Read in a sparse matrix 184<br />
-├── Program : Wrie out a sparse matrix 184<br />
-├── Program : Erase a sparse matrix 185<br />
-├─ 4.8 Doubly Linked Lists <br />
-├── Program : Insertion into a doubly linked circular list 188<br />
-├── Program : Deletion from a doubly linked circular list 189<br />
+├─ Pointer<br />
+├─ Singly Linked Lists<br />
+├─ Implementation stack by Linked Lists<br />
+├─ Implementation queue by Linked Lists<br /><br />
+├─ Algorithm for Adding Polynomials<br />
+├─ Equivalence Relations<br />
+├─ Linked Representation for Matrix<br />
 ├<b> Chapter 5. Trees</b><br />
 ├─ 5.1 Introduction<br />
 ├─ 5.2 Binary Trees<br />
