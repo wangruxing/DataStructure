@@ -11,7 +11,6 @@ int rear = -1;
 int front = -1;
 
 int isEmpty();
-int isFull();
 int enqueue(int rear, int value); 
 int dequeue(int rear, int front);
 

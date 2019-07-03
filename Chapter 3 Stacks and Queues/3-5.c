@@ -5,20 +5,20 @@
 #define MAX_EXPR_SIZE 100 /* max size of expression */
 
 // infix --> postfix
-// 1. 須寫上註解
 // 2. 逐步輸出過程
-// 3. 最好將變數統一跟課本相近
 typedef enum {lparen, rparen, plus, minus, times, divide, 
 	mod, eos, operand, blank } precedence;
 
 char expr[MAX_EXPR_SIZE]; /* input string */
 char result[MAX_EXPR_SIZE];
-char *str=result;
+char *str = result;
 int top = -1;
 char eexpr[MAX_EXPR_SIZE]; /* input string */
 int etop = -1;
 int value=0;
 int estack[MAX_STACK_SIZE];
+// ISP(堆疊內優先權):In Stack Priority
+// ICP(輸入優先權):In Coming Priority
 static int isp[] = {0,19,12,12,13,13,13,0};
 static int icp[] = {20,19,12,12,13,13,13,0};
 precedence stack[MAX_STACK_SIZE];
@@ -34,8 +34,7 @@ void push(precedence item){
 }                    
 
 precedence pop() {
-    if(top == -1)
-	{ 
+    if(top == -1){ 
         printf("stack_empty()\n");
 	}
 	return stack[(top)--];
@@ -66,8 +65,8 @@ precedence get_token(char *symbol, int *n) {
     	case '/': return divide;
     	case '*': return times;
 	    case '%': return mod;
-    	case ' ': return blank;
-    	case '\0': return eos;
+    	case ' ': return blank; // 空白
+    	case '\0': return eos; // 空字符
     	default: return operand;
     }
 }
@@ -93,18 +92,24 @@ void postfix(void) {
     int n = 0;
     top = 0;
     stack[0] = eos;
+    // get_token(&symbol, &n): &symbol, &n取址(變數位置)
+    // 運算子(operator): + - * / 
+    // 運算元(operand) : 1 2 3 4
     for(token = get_token(&symbol, &n); token != eos;token = get_token(&symbol, &n)) {
-        if(token != blank) {
-            if(token == operand) { 
+        //printf("symbol=%c\t", symbol);
+        if(token != blank) { // token不是空白
+            if(token == operand) { // token是運算元
                 *str++=symbol; 
             }
-            else if(token == rparen) { 
+            else if(token == rparen) { // token是右括號
                 *str++=' ';
-                while(stack[top] != lparen)
-	                print_token(pop());
+                // 直到找到左括號
+                while(stack[top] != lparen){ // 把stack輸出直到遇到左括號
+                    print_token(pop());
+                }     
                 pop();
             }
-            else { 
+            else {  // token是plus, minus, times, divide, mod
                 *str++=' '; 
                 while(isp[stack[top]] >= icp[token])
                     print_token(pop());
@@ -113,6 +118,7 @@ void postfix(void) {
         }
     }
     *str++=' '; 
+    // 把stack清空
     while((token = pop()) != eos)
         print_token(token);
     *str++='\0';
@@ -218,6 +224,8 @@ int main(){
     printf("%s", "Please input infix: ");
     scanf("%s", str);
 
+    // 如果要進行字串複製，可以使用 strcpy() 函式
+    // 第一個參數是目的字元陣列，第二個參數是來源字串
 	strcpy(expr, str);
 	printf("infix  : %s", expr);
 	postfix();
