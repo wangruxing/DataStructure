@@ -1,44 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h> 
 
-// Implementation stack
-struct stackNode{
+// Implementation queue
+struct queueNode{
     int data;
-    struct stackNode *nextPtr;
+    struct queueNode *nextPtr;
 };
 
-typedef struct stackNode StackNode;
-typedef StackNode *StackNodePtr;
+typedef struct queueNode QueueNode;
+typedef QueueNode *QueueNodePtr;
 
-void push(StackNodePtr *topPtr, int info);
-int pop(StackNodePtr *topPtr);
-int isEmpty(StackNodePtr topPtr);
-void PrintStack(StackNodePtr currentPtr);
+void printQueue(QueueNodePtr currentPtr);
+int isEmpty(QueueNodePtr headPtr);
+char dequeue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr);
+void enqueue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr, char value);
 void instructions(void);
 
-
 int main(void) {
-    StackNodePtr stackPtr = NULL;
+    QueueNodePtr headPtr = NULL;
+    QueueNodePtr tailPtr = NULL;
     unsigned int choice;
-    int value;
+    char item;
 
     instructions();
     printf("%s", "? ");
     scanf("%u", &choice);
 
     while(choice != 3){
-        switch(choice){
+        switch (choice){
             case 1:
-                printf("%s", "Enter an integer: ");
-                scanf("%d", &value);
-                push(&stackPtr, value);
-                PrintStack(stackPtr);
+                printf("%s", "Enter a character: ");
+                scanf("\n%c", &item);
+                enqueue(&headPtr, &tailPtr, item);
+                printQueue(headPtr);
                 break;
             case 2:
-                if(!isEmpty(stackPtr)){
-                    printf("The popped value is %d.\n", pop(&stackPtr));
+                if(!isEmpty(headPtr)){
+                    item = dequeue(&headPtr, &tailPtr);
+                    printf("%c has been dequeued.\n", item);
                 }
-                PrintStack(stackPtr);
+                printQueue(headPtr);
                 break;
             default:
                 puts("Invalid choice.\n");
@@ -54,55 +55,63 @@ int main(void) {
 // Display interface to user
 void instructions(void){
     puts("Enter choice:\n"
-    "1 to push a value on the stack\n"
-    "2 to pop a value off the stack\n"
+    "1 to add an item to the queue\n"
+    "2 to remove an item to the queue\n"
     "3 to end program");
 }
 
-// Insert a node at the top of the stack
-void push(StackNodePtr *topPtr, int info){
-    StackNodePtr newPtr;
-    newPtr = malloc(sizeof(StackNode));
-
+// insert a item at the tail of the queue
+void enqueue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr, char value){
+    QueueNodePtr newPtr;
+    newPtr = malloc(sizeof(QueueNode));
     if(newPtr != NULL){
-        newPtr->data = info;
-        newPtr->nextPtr = *topPtr;
-        *topPtr = newPtr;
+        newPtr->data = value;
+        newPtr->nextPtr = NULL;
+        
+        if(isEmpty(*headPtr)){
+            *headPtr = newPtr;
+        }else{
+            (*tailPtr)->nextPtr = newPtr;
+        }
+        *tailPtr = newPtr;
     }
     else{
-        printf("%d not inserted. No memory available.\n", info);
+        printf("%c not inserted. No memory available.\n", value);
     }
 }
 
-// Remove a node from the top of stack
-int pop(StackNodePtr *topPtr){
-    StackNodePtr tempPtr;
-    int popValue;
+// Remove a item from the head of queue
+char dequeue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr){
+    char value;
+    QueueNodePtr tempPtr;
 
-    tempPtr = *topPtr;
-    popValue = (*topPtr)->data;
-    *topPtr = (*topPtr)->nextPtr;
+    value = (*headPtr)->data;
+    tempPtr = *headPtr;
+    *headPtr = (*headPtr)->nextPtr;
+
+    if(*headPtr == NULL){
+        *tailPtr = NULL;
+    }
     free(tempPtr);
-    return popValue;
+    return value;
 }
 
-// Print satck
-void PrintStack(StackNodePtr currentPtr){
+// Return 1 if the queue is empty, 0 otherwise
+int isEmpty(QueueNodePtr headPtr){
+    return headPtr == NULL;
+}
+
+// Print queue
+void printQueue(QueueNodePtr currentPtr){
     if(currentPtr == NULL){
-        puts("The stack is empty.\n");
+        puts("Queue is empty.\n");
     }
     else{
-        puts("The stack is:");
-
+        puts("The queue is: ");
         while(currentPtr != NULL){
-            printf("%d --> ", currentPtr->data);
+            printf("%c --> ", currentPtr->data);
             currentPtr = currentPtr->nextPtr;
         }
         puts("NULL\n");
     }
-}
-
-// Return 1 if the stack is empty, 0 otherwise
-int isEmpty(StackNodePtr topPtr){
-    return topPtr == NULL;
 }
