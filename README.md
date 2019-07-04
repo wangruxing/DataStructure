@@ -31,7 +31,7 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├<b> Chapter 4. Linked Lists</b><br />
 ├─ Inserting and deleting nodes in a list (OK 20190704)<br />
 ├─ Implementation stack by Linked Lists (OK 20190704)<br />
-├─ Implementation queue by Linked Lists (OK 20190704)<br /><br />
+├─ Implementation queue by Linked Lists (OK 20190704)<br />
 ├─ Algorithm for Adding Polynomials<br />
 ├─ Equivalence Relations<br />
 ├─ Linked Representation for Matrix<br />
