@@ -42,21 +42,18 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├─ Max Heap<br />
 ├─ Winner tree<br />
 ├<b> Chapter 6. Graphs</b><br />
-├─ Depth First Search<br />
-├─ Breadth First Search<br />
-├─ Kruskal’s Algorithm<br />
-├─ Prim’s Algorithm<br />
-├─ Sollin’s Algorithm<br />
-├─ Dijkstra's algorithm<br />
+├─ DFS and BFS (須逐步輸出)<br />
+├─ Kruskal’s Algorithm(OK 20190705)<br />
+├─ Prim’s Algorithm(OK 20190705)<br />
+├─ Dijkstra's algorithm(OK 20190705)<br />
 ├─ Activity on Vertex (AOV) Network<br />
 ├─ Activity on Edge (AOE) Networks<br />
 ├<b> Chapter 7. Sorting Chapter</b><br />
-├─ 7.1 Motivation<br />
-├─ Section Sort*<br />
-├─ Bubble Sort<br />
-├─ Insertion Sort*<br />
-├─ Quick Sort<br />
-├─ Merge Sort*<br />
+├─ Section Sort*(OK 20190705)<br />
+├─ Bubble Sort(OK 20190705)<br />
+├─ Insertion Sort*(OK 20190705)<br />
+├─ Quick Sort(OK 20190705)<br />
+├─ Merge Sort*(OK 20190705)<br />
 ├─ Heap Sort<br />
 ├─ Radix Sort<br />
 ├─ List Sorts<br />
