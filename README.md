@@ -10,6 +10,7 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
  cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 7 Sorting Chapter"
  gcc 4.c -o 4
  ./4.exe
+ cd ..
 Program 編號先不打，等code打出來在賦予編號<br />
 ┌<b> Chapter 1. Basic Concepts (2019.03.16)</b><br />
 ├─ Program 1.13: Program 1.11 with count statements   26<br />
@@ -32,20 +33,21 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├─ Inserting and deleting nodes in a list (OK 20190704)<br />
 ├─ Implementation stack by Linked Lists (OK 20190704)<br />
 ├─ Implementation queue by Linked Lists (OK 20190704)<br />
-├─ Algorithm for Adding Polynomials<br />
-├─ Equivalence Relations<br />
+├─ Algorithm for Adding Polynomials(OK 20190722)<br />
+├─ Equivalence Relations(OK 20190722)<br />
 ├─ Linked Representation for Matrix<br />
 ├<b> Chapter 5. Trees</b><br />
 ├─ Traversing a binary tree (preorder, inorder, postorder and levelorder)(OK 20190704)<br />
 ├─ Level Order Tree Traversal(OK 20190704)<br />
 ├─ Threaded BT (如何輸出顯示 20190704)<br />
 ├─ Max Heap<br />
-├─ Winner tree<br />
+├─ Binary Search Tree insert an search(OK 20190722)<br />
 ├<b> Chapter 6. Graphs</b><br />
 ├─ DFS and BFS (須逐步輸出)<br />
 ├─ Kruskal’s Algorithm(OK 20190705)<br />
 ├─ Prim’s Algorithm(OK 20190705)<br />
 ├─ Dijkstra's algorithm(OK 20190705)<br />
+├─ Bellman and Ford algorithm(OK 20190722)<br />
 ├─ Activity on Vertex (AOV) Network<br />
 ├─ Activity on Edge (AOE) Networks<br />
 ├<b> Chapter 7. Sorting Chapter</b><br />
@@ -54,7 +56,7 @@ Program 編號先不打，等code打出來在賦予編號<br />
 ├─ Insertion Sort*(OK 20190705)<br />
 ├─ Quick Sort(OK 20190705)<br />
 ├─ Merge Sort*(OK 20190705)<br />
-├─ Heap Sort<br />
-├─ Radix Sort<br />
+├─ Heap Sort(OK 20190722)<br />
+├─ Radix Sort(OK 20190722)<br />
 ├─ List Sorts<br />
 └─ Table Sorts<br />

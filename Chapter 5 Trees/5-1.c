@@ -34,19 +34,21 @@ int main( void ){
    unsigned int i; // counter to loop from 1-10
    int item; // variable to hold random values
    TreeNodePtr rootPtr = NULL; // tree initially empty
-    
    srand( time( NULL ) ); 
-   puts( "The numbers being placed in the tree are:" );
+   int num;
+
+   printf( "How many node in this tree: " );
+   scanf("%d", &num);
 
    // insert random values between 0 and 14 in the tree
-   for ( i = 1; i <= 10; ++i ) { 
-      item = rand() % 15;
-      printf( "%3d", item );
+   printf( "Please input %d value: ", num );
+   for ( i = 1; i <= num; ++i ) { 
+      scanf("%d", &item);
       insertNode( &rootPtr, item );
-   } // end for
+   } // end for 
 
    // traverse the tree preOrder
-   puts( "\n\nThe preOrder traversal is:" );
+   puts( "\nThe preOrder traversal is:" );
    preOrder( rootPtr );
 
    // traverse the tree inOrder
