@@ -12,8 +12,7 @@ void merge( int array[], int left, int middle1, int middle2, int right );
 void displayElements( int array[], int length );
 void displaySubArray( int array[], int left, int right );
 
-int main( void )
-{
+int main( void ){
    int array[ SIZE ]; /* declare the array of ints to be sorted */
    int i; /* int used in for loop */
     
@@ -28,17 +27,15 @@ int main( void )
    mergeSort( array, SIZE ); /* merge sort the array */
    puts( "Sorted array:" );
    displayElements( array, SIZE ); /* print the array */
-} /* end function main */
+} 
 
 /* function that merge sorts the array */
-void mergeSort( int array[], int length )
-{
+void mergeSort( int array[], int length ){
    sortSubArray( array, 0, length - 1 );
-} /* end function mergeSort */
+}
 
 /* function that sorts a piece of the array */
-void sortSubArray( int array[], int low, int high )
-{
+void sortSubArray( int array[], int low, int high ){
    int middle1, middle2; /* ints that record where the array is split */
 
    /* test base case: size of array is 1 */
@@ -61,12 +58,11 @@ void sortSubArray( int array[], int low, int high )
         
       /* merge the two sorted arrays */
       merge( array, low, middle1, middle2, high );
-   } /* end if */
-} /* end function sortSubArray */
+   }
+} 
 
 /* merge two sorted subarrays into one sorted subarray */
-void merge( int array[], int left, int middle1, int middle2, int right )
-{
+void merge( int array[], int left, int middle1, int middle2, int right ){
    int leftIndex = left; /* index into left subarray */
    int rightIndex = middle2; /* index into right subarray */
    int combinedIndex = left; /* index into temporary array */
@@ -88,16 +84,16 @@ void merge( int array[], int left, int middle1, int middle2, int right )
          tempArray[ combinedIndex++ ] = array[ leftIndex++ ];
       else
          tempArray[ combinedIndex++ ] = array[ rightIndex++ ];
-   } /* end while */
+   } 
     
    if ( leftIndex == middle2 ) { /* if at end of left subarray ... */
       while ( rightIndex <= right ) /* copy the right subarray */
          tempArray[ combinedIndex++ ] = array[ rightIndex++ ];
-   } /* end if */
+   }
    else { /* if at end of right subarray... */
       while ( leftIndex <= middle1 ) /* copy the left subarray */
          tempArray[ combinedIndex++ ] = array[ leftIndex++ ];
-   } /* end else */
+   }
     
    /* copy values back into original array */
    for ( i = left; i <= right; i++ )
@@ -107,23 +103,21 @@ void merge( int array[], int left, int middle1, int middle2, int right )
    printf( "%s* ", "         " );
    displaySubArray( array, left, right );
    puts( "\n" );
-} /* end function merge */
+} 
 
 /* display elements in array */
-void displayElements( int array[], int length )
-{
+void displayElements( int array[], int length ){
    displaySubArray( array, 0, length - 1 );
-} /* end function displayElements */
+} 
 
 /* display certain elements in array */
-void displaySubArray( int array[], int left, int right )
-{
+void displaySubArray( int array[], int left, int right ){
    int i; /* int used in for loop */
     
    /* output spaces for alignment */
    for ( i = 0; i < left; i++ )
       printf( "%s* ", " " );
-    
+   
    /* output elements left in array */
    for ( i = left; i <= right; i++ )
       printf( " %d", array[ i ] );

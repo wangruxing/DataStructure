@@ -7,13 +7,15 @@
 /* The Bubble Sort algorithm. */
 void BubbleSort(int arr[], int len){
 	int i, j, temp;
-	for (i = 0; i < len - 1; ++i){          //循環N-1次
+	for (i = 0; i < len - 1; ++i){
         printf("i = %d\n", i);
-		for (j = 0; j < len - 1 - i; ++j){  //每次循環要比較的次數
-			if (arr[j] > arr[j + 1]){       //比大小後交換
+		for (j = 0; j < len - 1 - i; ++j){ 
+			if (arr[j] > arr[j + 1]){       // left > right
+                // swap(arr[j], arr[j + 1])
 				temp = arr[j];
 				arr[j] = arr[j + 1];
 				arr[j + 1] = temp;
+                // Output step by step
                 printf("%d swap %d -> ", arr[j], arr[j + 1]);
                 for (int k = 0; k < SIZE; ++k)
 		            printf("%d  ", arr[k]);

@@ -1,97 +1,71 @@
-#include <stdio.h> 
-#include <stdlib.h> 
-  
+#include <stdio.h>
+#include <stdlib.h> /* Random correlation function */
+#include <time.h>   /* Time correlation function */
+#include <string.h>
 
-// Level Order Tree Traversal
-/* A binary tree node has data, pointer to left child 
-   and a pointer to right child */
-struct node 
-{ 
-    int data; 
-    struct node* left, *right; 
+// Threaded BT
+struct threadedTree {                                            
+   char data;                             
+   struct threadedTree *rightChild; // pointer to right subtree
+   short int rightThread;
+   struct threadedTree *leftChild;  // pointer to left subtree 
+   short int leftThread;
 }; 
-  
-/* Function protoypes */
-void printGivenLevel(struct node* root, int level); 
-int height(struct node* node); 
-struct node* newNode(int data); 
-  
-/* Function to print level order traversal a tree*/
-void printLevelOrder(struct node* root) 
-{ 
-    int h = height(root); 
-    int i; 
-    for (i=1; i<=h; i++) 
-        printGivenLevel(root, i); 
-} 
-  
-/* Print nodes at a given level */
-void printGivenLevel(struct node* root, int level) 
-{ 
-    if (root == NULL) 
-        return; 
-    if (level == 1) 
-        printf("%d ", root->data); 
-    else if (level > 1) 
-    { 
-        printGivenLevel(root->left, level-1); 
-        printGivenLevel(root->right, level-1); 
-    } 
-} 
-  
-/* Compute the "height" of a tree -- the number of 
-    nodes along the longest path from the root node 
-    down to the farthest leaf node.*/
-int height(struct node* node) 
-{ 
-    if (node==NULL) 
-        return 0; 
-    else
-    { 
-        /* compute the height of each subtree */
-        int lheight = height(node->left); 
-        int rheight = height(node->right); 
-  
-        /* use the larger one */
-        if (lheight > rheight) 
-            return(lheight+1); 
-        else return(rheight+1); 
-    } 
-} 
-  
-/* Helper function that allocates a new node with the 
-   given data and NULL left and right pointers. */
-struct node* newNode(int data) 
-{ 
-    struct node* node = (struct node*) 
-                        malloc(sizeof(struct node)); 
-    node->data = data; 
-    node->left = NULL; 
-    node->right = NULL; 
-  
-    return(node); 
-} 
-  
-/* Driver program to test above functions*/
-int main() 
-{ 
-    /* tree
-         1
-       /   \
-      2     3
-     / \   / \
-    4   5 6   7
-     */
-    struct node *root = newNode(1); 
-    root->left        = newNode(2); 
-    root->right       = newNode(3); 
-    root->left->left  = newNode(4); 
-    root->left->right = newNode(5);
-    root->right->left = newNode(6);  
-    root->right->right= newNode(7);  
-  
-    printf("Level Order traversal of binary tree is \n"); 
-    printLevelOrder(root); 
-  
-    return 0; 
-} 
+typedef struct threadedTree TreeNode; // synonym for struct threadedTree
+typedef TreeNode *threadedPointer; // synonym for TreeNode*
+
+// prototypes
+threadedPointer insucc(threadedPointer tree);
+void tinorder(threadedPointer tree);
+void insertRight (threadedPointer s, threadedPointer r);
+
+threadedPointer insucc(threadedPointer tree){
+    threadedPointer temp;
+    temp = tree->rightChild;
+    if(!tree->rightThread)
+        while(!temp->leftThread)
+            temp = temp->leftChild;
+    return temp;
+}
+
+void tinorder(threadedPointer tree){
+    threadedPointer temp = tree;
+    for(;;){
+        temp = insucc(temp);
+        if(temp == tree) break;
+        printf("%3c", temp->data);
+    }
+}
+
+void insertRight (threadedPointer s, threadedPointer r){
+    threadedPointer temp;
+    r->rightChild = s->rightChild;
+    r->rightThread = s->rightThread;
+    r->leftChild = s;
+    r->leftThread = 1;
+    s->rightChild = r;
+    s->rightThread = 0;
+    if(!r->rightThread){
+        temp = insucc(r);
+        temp->leftChild = r;
+    }
+}
+
+void insertLeft (threadedPointer s, threadedPointer l){
+    threadedPointer temp;
+    l->leftChild= s->rightChild;
+    l->leftThread = s->rightThread;
+    l->rightChild = s;
+    l->rightThread = 0;
+    s->leftChild = l;
+    s->leftThread = 1;
+    if(!l->leftThread){
+        temp = insucc(l);
+        temp->rightChild = l;
+    }
+}
+
+int main(void) {
+
+    return 0;
+}

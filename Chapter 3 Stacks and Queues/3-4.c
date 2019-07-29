@@ -1,186 +1,234 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>   /* Time correlation function */
-#define MAX_STACK_SIZE 100
-#define MAP_LENGTH 6
-#define MAP_WIDTH 6
-#define EXIT_ROW MAP_LENGTH-2
-#define EXIT_COL MAP_WIDTH-2
+#include <math.h>
+#include <string.h>
+#define MAX_STACK_SIZE 100 /* maximum stack size */
+#define MAX_EXPR_SIZE 100 /* max size of expression */
 
-// A Mazing Problem
-// Walking directions
-typedef struct {
-    short int vert;
-    short int horiz;
-}offsets;
-offsets move[8];
+// infix to postfix
+// 2. 逐步輸出過程
+typedef enum {lparen, rparen, plus, minus, times, divide, 
+	mod, eos, operand, blank } precedence;
 
-typedef struct {
-    short int row;
-    short int col;
-    short int dir;
-}element;
-element stack[MAX_STACK_SIZE];
-element position;
+char expr[MAX_EXPR_SIZE]; /* input string */
+char result[MAX_EXPR_SIZE];
+char *str = result;
+int top = -1;
+char eexpr[MAX_EXPR_SIZE]; /* input string */
+int etop = -1;
+int value=0;
+int estack[MAX_STACK_SIZE];
+// ISP(堆疊內優先權):In Stack Priority
+// ICP(輸入優先權):In Coming Priority
+static int isp[] = {0,19,12,12,13,13,13,0};
+static int icp[] = {20,19,12,12,13,13,13,0};
+precedence stack[MAX_STACK_SIZE];
+/* isp and icp arrays ? index is value of precedence lparen, rparen, 
+	plus, minus, times, divide, mode, eos */
 
-void initMap();
-void printMap(int row, int col);
-void path(void);
-element pop();
-void stackFull();
-void stackEmpty();
-void push(element position);
+void push(precedence item){
+    if(top >= MAX_STACK_SIZE - 1) {
+        printf("stack_full()\n");
+        return;
+    }
+    stack[++top] = item;
+}                    
 
-short int top = -1;
-int map[MAP_LENGTH][MAP_WIDTH];
-int mark[MAP_LENGTH][MAP_WIDTH];
-char resultMap[MAP_LENGTH][MAP_WIDTH];
+precedence pop() {
+    if(top == -1){ 
+        printf("stack_empty()\n");
+	}
+	return stack[(top)--];
+}
 
-int main(void) {
-    initMap();
-    path();
+int isempty(){ 
+    if(top == -1) 
+        return(1); 
+    else 
+        return(0); 
+}
+
+int isfull(){ 
+    if(top >= MAX_STACK_SIZE -1) 
+        return(1); 
+    else 
+        return(0); 
+}
+
+
+precedence get_token(char *symbol, int *n) {
+    *symbol = expr[(*n)++];
+    switch(*symbol) {
+	    case '(': return lparen;
+	    case ')': return rparen;
+	    case '+': return plus;
+    	case '-': return minus;
+    	case '/': return divide;
+    	case '*': return times;
+	    case '%': return mod;
+    	case ' ': return blank; // 空白
+    	case '\0': return eos; // 空字符
+    	default: return operand;
+    }
+}
+/*    	case ' ': return blank; // 空白
+    	case '\0': return eos; // 空字符 */
+
+precedence print_token(precedence t) {
+    switch(t) {
+    	case lparen : *str++='(';*str++=' ';break;
+    	case rparen : *str++=')';*str++=' '; break;
+	    case plus : *str++='+'; break;
+    	case minus : *str++='-';*str++=' '; break;
+    	case divide : *str++='/';*str++=' '; break;
+    	case times : *str++='*';*str++=' '; break;
+	    case mod : *str++='%';*str++=' '; break;
+    	case eos : printf("eos"); break;
+    	default: printf("\n");
+    }
     return 0;
 }
 
-void initMap(){
-    srand( time(NULL) );
-    for(int i = 0;i < MAP_LENGTH;i++){
-        for(int j = 0;j < MAP_WIDTH;j++){
-            if(i == 0 || j == 0 || i == MAP_LENGTH-1 || j == MAP_WIDTH-1){
-                map[i][j] = 1;
-                mark[i][j] = 1;
-                resultMap[i][j] = '1';
-            }else{
-                map[i][j] = rand() % 2;
-                resultMap[i][j] = map[i][j] + '0';
-                mark[i][j] = 0;
-            }
-        }
-    }
-    // init starting point and ending point
-    map[1][1] = 0; // starting point
-    resultMap[1][1] = '0';
-    map[EXIT_ROW][EXIT_COL] = 0; // ending point
-    resultMap[EXIT_ROW][EXIT_COL] = '0';
-
-    move[0].vert = -1;
-    move[0].horiz = 0;
-    move[1].vert = -1;
-    move[1].horiz = 1;
-    move[2].vert = 0;
-    move[2].horiz = 1;
-    move[3].vert = 1;
-    move[3].horiz = 1;
-    move[4].vert = 1;
-    move[4].horiz = 0;
-    move[5].vert = 1;
-    move[5].horiz = -1;
-    move[6].vert = 0;
-    move[6].horiz = -1;
-    move[7].vert = -1;
-    move[7].horiz = -1; 
-}
-
-void path(void){
-    int row, col, nextRow, nextCol, dir, found=0;
-    mark[1][1] = 1;
+void postfix(void) {
+    char symbol;
+    precedence token;
+    int n = 0;
     top = 0;
-    stack[0].row = 1;
-    stack[0].col = 1;
-    stack[0].dir = 1;
-    while(top > -1 && !found){
-        position = pop();
-        row = position.row;
-        col = position.col;
-        dir = position.dir;
-        while(dir < 8 && !found){
-            nextRow = row + move[dir].vert;
-            nextCol = col + move[dir].horiz;
-            if(nextRow == EXIT_ROW && nextCol == EXIT_COL)
-                found = 1;
-            else if (!map[nextRow][nextCol] && !mark[nextRow][nextCol]){
-                mark[nextRow][nextCol] = 1;
-                position.row = row;
-                position.col = col;
-                position.dir = ++dir;
-                push(position);
-                row = nextRow;
-                col = nextCol;
-                dir = 0;
+    stack[0] = eos;
+    // get_token(&symbol, &n): &symbol, &n取址(變數位置)
+    // 運算子(operator): + - * / 
+    // 運算元(operand) : 1 2 3 4
+    for(token = get_token(&symbol, &n); token != eos;token = get_token(&symbol, &n)) {
+        if(token != blank) {                 // token不是空白
+            if(token == operand) {           // token是運算元
+                *str++=symbol; 
             }
-            else
-                dir++;
-        }
-    }
-    if(found){
-        printMap(row, col);
-    }
-    else
-        printf("The maze does not have path\n");
-}
-
-void printMap(int row, int col){
-    printf("map\n");
-    for(int i = 0;i < MAP_LENGTH;i++){
-        for(int j = 0;j < MAP_WIDTH;j++){
-            printf("%d ", map[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nThe path is: \n");
-    for(int k = 0;k <= top;k++){ 
-        resultMap[stack[k].row][stack[k].col] = '*';
-        printf("row=%d, col=%d\n", stack[k].row, stack[k].col);
-        for(int i = 0;i < MAP_LENGTH;i++){
-            for(int j = 0;j < MAP_WIDTH;j++){
-                printf("%c ", resultMap[i][j]);
+            else if(token == rparen) {       // token是右括號
+                *str++=' ';
+                while(stack[top] != lparen){ // 把stack輸出直到遇到左括號
+                    print_token(pop());
+                }     
+                pop();                       // 輸出左括號
             }
-            printf("\n");
-        }  
-        printf("\n");
-        system("pause");
-    }
-
-    printf("row=%d, col=%d\n", row, col);
-    resultMap[row][col] = '*';
-    for(int i = 0;i < MAP_LENGTH;i++){
-        for(int j = 0;j < MAP_WIDTH;j++){
-            printf("%c ", resultMap[i][j]);
+            else {                           // token是plus, minus, times, divide, mod
+                *str++=' '; 
+                while(isp[stack[top]] >= icp[token])
+                    print_token(pop());
+                push(token);
+            }
         }
-        printf("\n");
-    }  
+    }
+    *str++=' '; 
+    while((token = pop()) != eos)   // 把stack清空
+        print_token(token);
+    *str++='\0';
     printf("\n");
-    system("pause");
+}
 
-    printf("row=%d, col=%d\n", EXIT_ROW, EXIT_COL);
-    resultMap[EXIT_ROW][EXIT_COL] = '*';
-    for(int i = 0;i < MAP_LENGTH;i++){
-        for(int j = 0;j < MAP_WIDTH;j++){
-            printf("%c ", resultMap[i][j]);
+void epush(int item){
+    if(etop >= MAX_STACK_SIZE - 1) {
+        printf("stack_full()\n");
+        return;
+    }
+    estack[++etop] = item;
+}                    
+
+int epop() {
+	if(etop == -1){ 
+		printf("stack_empty()\n"); 
+	}
+	return estack[(etop)--];
+}
+
+int eisempty(){ 
+    if(etop == -1) 
+        return(1); 
+    else 
+        return(0);
+}
+
+int eisfull(){ 
+    if(etop >= MAX_STACK_SIZE -1) 
+        return(1); 
+    else 
+        return(0);
+}
+
+precedence eget_token(char *esymbol, int *n) {
+    *esymbol = eexpr[(*n)++];
+    switch(*esymbol) {
+        case '(': return lparen;
+        case ')': return rparen;
+        case '+': return plus;
+        case '-': return minus;
+        case '/': return divide;
+        case '*': return times;
+        case '%': return mod;
+        case ' ': return blank;
+        case '\0': return eos;
+        default: {
+            value=(*esymbol-'0');
+            while(eexpr[(*n)] >= '0' && eexpr[(*n)] <='9'){
+                *esymbol=eexpr[(*n)++];
+                value=value*10+(*esymbol-'0');
+            }; 	
+            return operand;
         }
-        printf("\n");
-    }  
+    }
 }
 
-void stackFull(){
-    fprintf(stderr, "Stack is full, cannot add element");
-    exit(EXIT_FAILURE);
+precedence eprint_token(precedence  t) {
+    switch(t) {
+        case lparen : printf("(" ); break;
+        case rparen : printf(")" ); break;
+        case plus : printf("+" ); break;
+        case minus : printf("-" ); break;
+        case divide : printf("/" ); break;
+        case times : printf("*" ); break;
+        case mod : printf("%" ); break;
+        case eos : printf("eos" ); break;
+        default: printf("\n");
+    } 
+    return 0;
 }
 
-void stackEmpty(){
-    fprintf(stderr, "Stack is empty, cannot pop element");
-    exit(EXIT_FAILURE);
+int eval(void){
+    precedence token;
+    char esymbol;
+    int op1, op2;
+    int n = 0;
+    etop = -1;
+    token = eget_token(&esymbol, &n);
+    while (token != eos) {
+        if(token == operand)
+            epush(value);
+        else if (token != blank) {
+            op2 = epop();
+            op1 = epop();
+            switch(token) {
+                case blank: break;
+                case plus: epush(op1 + op2);break;
+                case minus: epush(op1 - op2);break;
+                case times: epush(op1 * op2);break;
+                case divide: epush(op1 / op2);break;
+                case mod: epush(op1 % op2);
+            }
+        }
+        token = eget_token(&esymbol, &n);
+    }
+    return epop();
 }
 
-element pop(){
-    if(top == -1)
-        stackEmpty();
-    return stack[top--];
-}
+int main(){
+    char str[80];
+    printf("%s", "Please input infix: ");
+    scanf("%s", str);
 
-void push(element position){
-    if(top >= MAX_STACK_SIZE-1)
-        stackFull();
-    stack[++top] = position;
+    // 如果要進行字串複製，可以使用 strcpy() 函式
+    // 第一個參數是目的字元陣列，第二個參數是來源字串
+	strcpy(expr, str);
+	printf("infix  : %s", expr);
+	postfix();
+	printf("postfix: %s\n", result);
+	strcpy(eexpr, result);
+	printf("result : %d\n", eval());
 }

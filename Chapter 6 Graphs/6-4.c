@@ -5,7 +5,7 @@
 void dijikstra(int G[MAX][MAX], int n, int startnode);
 void main(){
 	int G[MAX][MAX], i, j, n, u;
-	printf("\nEnter the no. of vertices:: ");
+	printf("Enter the no. of vertices:: ");
 	scanf("%d", &n);
 	printf("\nEnter the adjacency matrix::\n");
 	for(i=0;i < n;i++)
@@ -68,6 +68,9 @@ void dijikstra(int G[MAX][MAX], int n, int startnode)
 		}
 }
 /* input
+Enter the no. of vertices:: 8
+
+Enter the adjacency matrix::
 0 0 0 0 0 0 0 0
 300 0 0 0 0 0 0 0
 1000 800 0 0 0 0 0 0
@@ -76,4 +79,22 @@ void dijikstra(int G[MAX][MAX], int n, int startnode)
 0 0 0 1000 0 0 900 1400
 0 0 0 0 0 0 0 1000
 1700 0 0 0 0 0 0 0
+
+Enter the starting node:: 4
+ */
+/*output
+Distance of 0 = 3350
+Path = 0 <-7 <-5 <-4
+Distance of 1 = 3250
+Path = 1 <-2 <-3 <-5 <-4
+Distance of 2 = 2450
+Path = 2 <-3 <-5 <-4
+Distance of 3 = 1250
+Path = 3 <-5 <-4
+Distance of 5 = 250
+Path = 5 <-4
+Distance of 6 = 1150
+Path = 6 <-5 <-4
+Distance of 7 = 1650
+Path = 7 <-5 <-4
  */

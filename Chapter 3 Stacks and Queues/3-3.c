@@ -1,111 +1,187 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define SIZE 5
+#include <time.h>   /* Time correlation function */
+#define MAX_STACK_SIZE 100
+#define MAP_LENGTH 6
+#define MAP_WIDTH 6
+#define EXIT_ROW MAP_LENGTH-2
+#define EXIT_COL MAP_WIDTH-2
 
-// Implementation circular queue
-int items[SIZE];
-int front = -1, rear =-1;
+// A Mazing Problem
+// Walking directions
+typedef struct {
+    short int vert;
+    short int horiz;
+}offsets;
+offsets move[8];
 
-int isEmpty();
-int isFull();
-void enQueue(int element);
-int deQueue();
-void printQueue();
-void instructions(void);
+// Record path
+typedef struct {
+    short int row;
+    short int col;
+    short int dir;
+}element;
+element stack[MAX_STACK_SIZE];
+element position;
+
+void initMap();
+void printMap(int row, int col);
+void path(void);
+element pop();
+void stackFull();
+void stackEmpty();
+void push(element position);
+
+short int top = -1;
+int map[MAP_LENGTH][MAP_WIDTH];
+int mark[MAP_LENGTH][MAP_WIDTH];
+char resultMap[MAP_LENGTH][MAP_WIDTH];
 
 int main(void) {
-    unsigned int choice;
-    int value;
+    initMap();
+    path();
+    return 0;
+}
 
-    instructions();
-    printf("%s", "? ");
-    scanf("%u", &choice);
-
-    while(choice != 3){
-        switch (choice){
-            case 1:
-                printf("%s", "Enter an integer: ");
-                scanf("%d", &value);
-                enQueue(value);
-                break;
-            case 2:
-                if(!isEmpty()){
-                    printf("Deleted element -> %d \n", deQueue());
-                    printQueue();
-                }    
-                break;
-            default:
-                puts("Invalid choice.\n");
-                instructions();
-                break;
+void initMap(){
+    srand( time(NULL) );
+    for(int i = 0;i < MAP_LENGTH;i++){
+        for(int j = 0;j < MAP_WIDTH;j++){
+            if(i == 0 || j == 0 || i == MAP_LENGTH-1 || j == MAP_WIDTH-1){
+                map[i][j] = 1;
+                mark[i][j] = 1;
+                resultMap[i][j] = '1';
+            }else{
+                map[i][j] = rand() % 2;
+                resultMap[i][j] = map[i][j] + '0';
+                mark[i][j] = 0;
+            }
         }
-        printf("%s", "? ");
-        scanf("%u", &choice);
     }
-    puts("End of run.");
+    // init starting point and ending point
+    map[1][1] = 0; // starting point
+    resultMap[1][1] = '0';
+    map[EXIT_ROW][EXIT_COL] = 0; // ending point
+    resultMap[EXIT_ROW][EXIT_COL] = '0';
+
+    move[0].vert = -1;
+    move[0].horiz = 0;
+    move[1].vert = -1;
+    move[1].horiz = 1;
+    move[2].vert = 0;
+    move[2].horiz = 1;
+    move[3].vert = 1;
+    move[3].horiz = 1;
+    move[4].vert = 1;
+    move[4].horiz = 0;
+    move[5].vert = 1;
+    move[5].horiz = -1;
+    move[6].vert = 0;
+    move[6].horiz = -1;
+    move[7].vert = -1;
+    move[7].horiz = -1; 
 }
 
-// Display interface to user
-void instructions(void){
-    puts("Enter choice:\n"
-    "1 to add an item to the circle queue\n"
-    "2 to remove an item to the circle queue\n"
-    "3 to end program");
-}
-
-// Return 1 if the queue is empty, 0 otherwise
-int isEmpty(){
-    return front == -1;
-}
-
-int isFull(){
-    return ((front == rear + 1) || (front == 0 && rear == SIZE-1));
-}
-
-void enQueue(int element){
-    if(isFull()) {
-        printf("Queue is full!! \n");
-    }
-    else{
-        if(front == -1){
-            front = 0;
+void path(void){
+    int row, col, nextRow, nextCol, dir, found=0;
+    mark[1][1] = 1;
+    top = 0;
+    stack[0].row = 1;
+    stack[0].col = 1;
+    stack[0].dir = 1;
+    while(top > -1 && !found){
+        position = pop();
+        row = position.row;
+        col = position.col;
+        dir = position.dir;
+        while(dir < 8 && !found){
+            nextRow = row + move[dir].vert;
+            nextCol = col + move[dir].horiz;
+            if(nextRow == EXIT_ROW && nextCol == EXIT_COL)
+                found = 1;
+            else if (!map[nextRow][nextCol] && !mark[nextRow][nextCol]){
+                mark[nextRow][nextCol] = 1;
+                position.row = row;
+                position.col = col;
+                position.dir = ++dir;
+                push(position);
+                row = nextRow;
+                col = nextCol;
+                dir = 0;
+            }
+            else
+                dir++;
         }
-        rear = (rear + 1) % SIZE;
-        items[rear] = element;
-        printQueue();
     }
+    if(found){
+        printMap(row, col);
+    }
+    else
+        printf("The maze does not have path\n");
 }
 
-int deQueue(){
-    int element;
-    if(isEmpty()) {
-        printf("Queue is empty !! \n");
-        return(-1);
-    } else {
-        element = items[front];
-        if (front == rear){
-            front = -1;
-            rear = -1;
-        } 
-        else {
-            front = (front + 1) % SIZE;  
+void printMap(int row, int col){
+    printf("map\n");
+    for(int i = 0;i < MAP_LENGTH;i++){
+        for(int j = 0;j < MAP_WIDTH;j++){
+            printf("%d ", map[i][j]);
         }
-        return(element);
+        printf("\n");
     }
+
+    printf("\nThe path is: \n");
+    for(int k = 0;k <= top;k++){ 
+        resultMap[stack[k].row][stack[k].col] = '*';
+        printf("row=%d, col=%d\n", stack[k].row, stack[k].col);
+        for(int i = 0;i < MAP_LENGTH;i++){
+            for(int j = 0;j < MAP_WIDTH;j++){
+                printf("%c ", resultMap[i][j]);
+            }
+            printf("\n");
+        }  
+        printf("\n");
+        system("pause");
+    }
+
+    printf("row=%d, col=%d\n", row, col);
+    resultMap[row][col] = '*';
+    for(int i = 0;i < MAP_LENGTH;i++){
+        for(int j = 0;j < MAP_WIDTH;j++){
+            printf("%c ", resultMap[i][j]);
+        }
+        printf("\n");
+    }  
+    printf("\n");
+    system("pause");
+
+    printf("row=%d, col=%d\n", EXIT_ROW, EXIT_COL);
+    resultMap[EXIT_ROW][EXIT_COL] = '*';
+    for(int i = 0;i < MAP_LENGTH;i++){
+        for(int j = 0;j < MAP_WIDTH;j++){
+            printf("%c ", resultMap[i][j]);
+        }
+        printf("\n");
+    }  
 }
 
-void printQueue(){
-    int i;
-    if(isEmpty()){
-        printf("Empty Queue\n");
-    }
-    else{
-        printf(" Front -> %d ",front);
-        printf("\n Items -> ");
-        for( i = front; i!=rear; i=(i+1)%SIZE){
-            printf("%d ",items[i]);
-        }
-        printf("%d ",items[i]);
-        printf("\n Rear -> %d \n",rear);
-    }
+void stackFull(){
+    fprintf(stderr, "Stack is full, cannot add element");
+    exit(EXIT_FAILURE);
+}
+
+void stackEmpty(){
+    fprintf(stderr, "Stack is empty, cannot pop element");
+    exit(EXIT_FAILURE);
+}
+
+element pop(){
+    if(top == -1)
+        stackEmpty();
+    return stack[top--];
+}
+
+void push(element position){
+    if(top >= MAX_STACK_SIZE-1)
+        stackFull();
+    stack[++top] = position;
 }

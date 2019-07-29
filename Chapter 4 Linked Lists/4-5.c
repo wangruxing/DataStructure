@@ -16,13 +16,11 @@
 struct node {                                      
    char data; // each listNode contains a character 
    struct node *link; // pointer to next node
-}; // end structure listNode                        
-
+};                     
 typedef struct node Node; // synonym for struct node
 typedef Node *NodePtr; // synonym for Node*
+
 // Equivalence Relations
-
-
 int main(void) {
     short int out[MAX_SIZE];
     NodePtr seq[MAX_SIZE];
@@ -65,10 +63,10 @@ int main(void) {
                     if(out[j]){
                         printf("%5d", j);
                         out[j] = FALSE;
-                        y = x->link;
-                        x->link = top;
-                        top = x;
-                        x = y;
+                        y = x->link; 
+                        x->link = top; 
+                        top = x; 
+                        x = y; 
                     }
                     else{
                         x = x->link;

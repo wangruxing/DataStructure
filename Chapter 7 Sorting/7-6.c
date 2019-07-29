@@ -6,7 +6,7 @@ void heapify(int arr[], int n, int i) ;
 void heapSort(int arr[], int n);
 void printArray(int arr[], int n);
 
-int arr[] = {12, 11, 13, 5, 6, 7}; 
+int arr[] = {26, 5, 77, 1, 61, 11, 59, 15, 48, 19}; 
 int n = sizeof(arr)/sizeof(arr[0]);
 int len = sizeof(arr)/sizeof(arr[0]); 
 
@@ -28,7 +28,7 @@ void heapify(int arr[], int n, int i) {
 	// If largest is not root 
 	if (largest != i){ 
         // swap
-        printf("Largest is not root: swap(%d, %d)\n", arr[i], arr[largest]);
+        printf("Root arr[%d] is not largest number: swap(%d, %d)\n", i, arr[i], arr[largest]);
         int temp = arr[i];
         arr[i] = arr[largest];
         arr[largest] = temp;
@@ -54,10 +54,11 @@ void heapSort(int arr[], int n) {
 	// One by one extract an element from heap 
 	for (int i=n-1; i>=0; i--) { 
 		// swap: Move current root to end  
-        printf("Move current root to end: swap(%d, %d)\n", arr[0], arr[i]);
+        printf("Move current root arr[0] to end: swap(%d, %d)\n", arr[0], arr[i]);
         int temp = arr[0];
         arr[0] = arr[i];
         arr[i] = temp;
+		// Output step by step
         printArray(arr, n);
         for(int k = 0;k < len;k++){
             if(k == 0 || k == i)

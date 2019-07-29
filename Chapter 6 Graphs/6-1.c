@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUM_VERTEX 10
+#define NUM_VERTEX 8
 
 /* 2019.07.05
 1. 可執行，須逐步輸出執行結果
@@ -143,11 +143,12 @@ int main() {
 		new_vertex('F'), //[5]
 		new_vertex('G'), //[6]
 		new_vertex('H'), //[7]
-		new_vertex('I'), //[8]
-		new_vertex('J')  //[9]
+		//new_vertex('I'), //[8]
+		//new_vertex('J')  //[9]
 	};
 	
 	// connect the vertices
+	/*
 	connect(graph[0], graph[2]);
 	connect(graph[0], graph[3]);
 	connect(graph[0], graph[4]);
@@ -160,7 +161,17 @@ int main() {
 	connect(graph[6], graph[9]);
 	connect(graph[7], graph[8]);
 	connect(graph[8], graph[9]);
-	
+	*/
+	connect(graph[0], graph[1]);
+	connect(graph[0], graph[2]);
+	connect(graph[1], graph[3]);
+	connect(graph[1], graph[4]);
+	connect(graph[2], graph[5]);
+	connect(graph[2], graph[6]);
+	connect(graph[3], graph[7]);
+	connect(graph[4], graph[7]);
+	connect(graph[5], graph[7]);
+	connect(graph[6], graph[7]);
 	// depth first search
 	printf ("DFS: ");
 	dfs (graph);

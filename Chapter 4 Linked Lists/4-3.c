@@ -3,12 +3,11 @@
 
 // Implementation queue
 struct queueNode{
-    int data;
+    char data;
     struct queueNode *nextPtr;
 };
-
-typedef struct queueNode QueueNode;
-typedef QueueNode *QueueNodePtr;
+typedef struct queueNode QueueNode; // synonym for struct queueNode
+typedef QueueNode *QueueNodePtr;    // synonym for QueueNode*
 
 void printQueue(QueueNodePtr currentPtr);
 int isEmpty(QueueNodePtr headPtr);
@@ -67,11 +66,10 @@ void enqueue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr, char value){
     if(newPtr != NULL){
         newPtr->data = value;
         newPtr->nextPtr = NULL;
-        
         if(isEmpty(*headPtr)){
-            *headPtr = newPtr;
-        }else{
-            (*tailPtr)->nextPtr = newPtr;
+            *headPtr = newPtr;             // the queue is empty
+        }else{                  
+            (*tailPtr)->nextPtr = newPtr;  // the queue isn't empty
         }
         *tailPtr = newPtr;
     }
@@ -84,11 +82,9 @@ void enqueue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr, char value){
 char dequeue(QueueNodePtr *headPtr, QueueNodePtr *tailPtr){
     char value;
     QueueNodePtr tempPtr;
-
     value = (*headPtr)->data;
     tempPtr = *headPtr;
     *headPtr = (*headPtr)->nextPtr;
-
     if(*headPtr == NULL){
         *tailPtr = NULL;
     }

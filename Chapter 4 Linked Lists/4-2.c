@@ -6,9 +6,8 @@ struct stackNode{
     int data;
     struct stackNode *nextPtr;
 };
-
-typedef struct stackNode StackNode;
-typedef StackNode *StackNodePtr;
+typedef struct stackNode StackNode; // synonym for struct stackNode
+typedef StackNode *StackNodePtr;    // synonym for StackNode*
 
 void push(StackNodePtr *topPtr, int info);
 int pop(StackNodePtr *topPtr);
@@ -63,7 +62,6 @@ void instructions(void){
 void push(StackNodePtr *topPtr, int info){
     StackNodePtr newPtr;
     newPtr = malloc(sizeof(StackNode));
-
     if(newPtr != NULL){
         newPtr->data = info;
         newPtr->nextPtr = *topPtr;
@@ -78,7 +76,6 @@ void push(StackNodePtr *topPtr, int info){
 int pop(StackNodePtr *topPtr){
     StackNodePtr tempPtr;
     int popValue;
-
     tempPtr = *topPtr;
     popValue = (*topPtr)->data;
     *topPtr = (*topPtr)->nextPtr;

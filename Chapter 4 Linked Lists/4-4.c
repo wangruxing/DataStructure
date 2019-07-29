@@ -13,7 +13,6 @@ struct polyNode{
     int expon;
     struct polyNode *link;
 } ;
-
 typedef struct polyNode PolyNode; // synonym for struct polyNode
 typedef PolyNode *PolyNodePtr; // synonym for PolyNode*
 PolyNodePtr a, b;
@@ -75,26 +74,28 @@ PolyNodePtr padd(PolyNodePtr a, PolyNodePtr b){
     c = rear;
     while(a && b){
         switch(COMPARE(a->expon, b->expon)){
-            case -1:
+            case -1:  // a->expon < b->expon
                 attach(b->coef, b->expon, &rear);
                 b = b->link;
                 break;
-            case 0:
+            case 0:   // a->expon = b->expon
                 sum = a->coef + b->coef;
                 if (sum)
                     attach(sum, a->expon, &rear);
                 a = a->link;
                 b = b->link;
-            case 1:
+            case 1:   // a->expon > b->expon
                 attach(a->coef, a->expon, &rear);
                 a = a->link;
         }
     }
+    // copy rest of list a and then list b
     for(; a; a = a->link)
         attach(a->coef, a->expon, &rear);
     for(; b; b = b->link)
         attach(b->coef, b->expon, &rear);
     rear->link = NULL;
+    // delete extra initial node
     temp = c;
     c = c->link;
     free(temp);

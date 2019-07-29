@@ -3,16 +3,14 @@
 #include <string.h>
 #include <limits.h>
  
-struct Edge
-{
+struct Edge{
     // This structure is equal to an edge. Edge contains two end points. These edges are directed edges so they
 	//contain source and destination and some weight. These 3 are elements in this structure
     int source, destination, weight;
 };
  
 // a structure to represent a connected, directed and weighted graph
-struct Graph
-{
+struct Graph{
     int V, E;
 	// V is number of vertices and E is number of edges
  
@@ -20,8 +18,7 @@ struct Graph
 	// This structure contain another structure which we already created edge.
 };
  
-struct Graph* createGraph(int V, int E)
-{
+struct Graph* createGraph(int V, int E){
     struct Graph* graph = (struct Graph*) malloc( sizeof(struct Graph));
 	//Allocating space to structure graph
  
@@ -35,8 +32,7 @@ struct Graph* createGraph(int V, int E)
     return graph;
 }
  
-void FinalSolution(int dist[], int n)
-{
+void FinalSolution(int dist[], int n){
 	// This function prints the final solution
     printf("\nVertex\tDistance from Source Vertex\n");
     int i;
@@ -45,15 +41,19 @@ void FinalSolution(int dist[], int n)
 		printf("%d \t\t %d\n", i, dist[i]);
 	}
 }
+
+void PartSolution(int dist[], int n){
+	// This function prints the final solution
+    for (int i = 0; i < n; ++i){
+		printf("%d ", dist[i]);
+	}
+    printf("\n");
+}
  
-void BellmanFord(struct Graph* graph, int source)
-{
+void BellmanFord(struct Graph* graph, int source){
     int V = graph->V;
- 
     int E = graph->E;
- 
     int StoreDistance[V];
- 
     int i,j;
  
     // This is initial step that we know , we initialize all distance to infinity except source.
@@ -63,20 +63,19 @@ void BellmanFord(struct Graph* graph, int source)
         StoreDistance[i] = INT_MAX;
  
     StoreDistance[source] = 0;
- 
+    printf("\n");
     //The shortest path of graph that contain V vertices, never contain "V-1" edges. So we do here "V-1" relaxations
-    for (i = 1; i <= V-1; i++)
-    {
-        for (j = 0; j < E; j++)
-        {
+    for (i = 1; i <= V-1; i++){
+        for (j = 0; j < E; j++){
             int u = graph->edge[j].source;
- 
             int v = graph->edge[j].destination;
- 
             int weight = graph->edge[j].weight;
- 
-            if (StoreDistance[u] + weight < StoreDistance[v])
+            if (StoreDistance[u] + weight < StoreDistance[v]){
+                printf("u = %d, v = %d, weight = %d :: ", u, v, weight);
+                printf("(dist[u]=%d) + weight < (dist[v]=%d): ", StoreDistance[u], StoreDistance[v]);
                 StoreDistance[v] = StoreDistance[u] + weight;
+                PartSolution(StoreDistance, V);
+            }
         }
     }
  
@@ -84,25 +83,18 @@ void BellmanFord(struct Graph* graph, int source)
     // shortest distances if graph doesn't contain negative weight cycle.
  
     // If we get a shorter path, then there is a negative edge cycle.
-    for (i = 0; i < E; i++)
-    {
+    for (i = 0; i < E; i++){
         int u = graph->edge[i].source;
- 
         int v = graph->edge[i].destination;
- 
         int weight = graph->edge[i].weight;
- 
         if (StoreDistance[u] + weight < StoreDistance[v])
             printf("This graph contains negative edge cycle\n");
     }
- 
     FinalSolution(StoreDistance, V);
- 
     return;
 }
  
-int main()
-{
+int main(){
     int V,E,S;  //V = no.of Vertices, E = no.of Edges, S is source vertex
  
 	printf("Enter number of vertices in graph\n");
@@ -129,3 +121,44 @@ int main()
  
     return 0;
 }
+
+/*input
+Enter number of vertices in graph
+7
+Enter number of edges in graph
+10
+Enter your source vertex number
+0
+
+Enter edge 1 properties Source, destination, weight respectively
+0 1 6
+Enter edge 2 properties Source, destination, weight respectively
+0 2 5
+Enter edge 3 properties Source, destination, weight respectively
+0 3 5
+Enter edge 4 properties Source, destination, weight respectively
+3 2 -2
+Enter edge 5 properties Source, destination, weight respectively
+2 1 -2
+Enter edge 6 properties Source, destination, weight respectively
+1 4 -1
+Enter edge 7 properties Source, destination, weight respectively
+2 4 1
+Enter edge 8 properties Source, destination, weight respectively
+3 5 -1
+Enter edge 9 properties Source, destination, weight respectively
+4 6 3
+Enter edge 10 properties Source, destination, weight respectively
+5 6 3
+ */
+
+/*output
+Vertex  Distance from Source Vertex
+0                0
+1                1
+2                3
+3                5
+4                0
+5                4
+6                3
+ */

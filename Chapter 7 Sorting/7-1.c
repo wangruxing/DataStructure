@@ -9,8 +9,7 @@ void selectionSort( int array[], int length );
 void swap( int array[], int first, int second );
 void printPass( int array[], int length, int pass, int index );
 
-int main( void )
-{
+int main( void ){
    int array[ SIZE ]; /* declare the array of ints to be sorted */
    int i; /* int used in for loop */
     
@@ -20,22 +19,21 @@ int main( void )
       array[ i ] = rand() % 90 + 10; /* give each element a value */
         
    puts( "Unsorted array:" );
-    
    for ( i = 0; i < SIZE; i++ ) /* print the array */
       printf( "%d  ", array[ i ] );
         
    puts( "\n" );
+
    selectionSort( array, SIZE );
+
    puts( "Sorted array:" );
-    
    for ( i = 0; i < SIZE; i++ ) /* print the array */
       printf( "%d  ", array[ i ] );
         
-} /* end function main */
+}
 
 /* function that selection sorts the array */
-void selectionSort( int array[], int length )
-{
+void selectionSort( int array[], int length ){
    int smallest; /* index of smallest element */
    int i, j; /* ints used in for loops */
     
@@ -50,21 +48,19 @@ void selectionSort( int array[], int length )
                 
        swap( array, i, smallest ); /* swap smallest element */
        printPass( array, length, i + 1, smallest ); /* output pass */
-   } /* end for */
-} /* end function selectionSort */
+   } 
+} 
 
 /* function that swaps two elements in the array */
-void swap( int array[], int first, int second )
-{
+void swap( int array[], int first, int second ){
    int temp; /* temporary integer */
    temp = array[ first ];
    array[ first ] = array[ second ];
    array[ second ] = temp;
-} /* end function swap */
+}
 
 /* function that prints a pass of the algorithm */
-void printPass( int array[], int length, int pass, int index )
-{
+void printPass( int array[], int length, int pass, int index ){
    int i; /* int used in for loop */
     
    printf( "After pass %2d: ", pass );
@@ -86,4 +82,4 @@ void printPass( int array[], int length, int pass, int index )
       printf( "%s", "--  " );
     
    puts( "\n" ); /* add newline */
-} /* end function printPass */
+}

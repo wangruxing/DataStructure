@@ -1,10 +1,7 @@
 #include<stdio.h>
 #include<conio.h>
 int a,b,u,v,n,i,j,ne=1;
-int visited[10]= {
-	0
-}
-,min,mincost=0,cost[10][10];
+int visited[10]= {0},min,mincost=0,cost[10][10];
 
 // Prim’s Algorithm
 void main() {
@@ -18,7 +15,7 @@ void main() {
 		    cost[i][j]=999;
 	}
 	visited[1]=1;
-	printf("\n");
+	printf("\nThe edges of Minimum Cost Spanning Tree are\n");
 	while(ne<n) {
 		for (i=1,min=999;i<=n;i++)
 		   for (j=1;j<=n;j++)
@@ -35,7 +32,7 @@ void main() {
 		}
 		cost[a][b]=cost[b][a]=999;
 	}
-	printf("Minimun cost=%d",mincost);
+	printf("\nMinimun cost=%d",mincost);
 }
 /* input
 0 12 0 0 0 35 0
