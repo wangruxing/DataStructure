@@ -18,15 +18,15 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├─ 1-3.c : Matrix addition with count statements<br />
 ├<b> Chapter 2. Arrays & Structures (2019.03.28)</b><br />
 ├─ 2-1.c : 1-dimension array addressing<br />
-├─ 2-2.c : Structures and Unions<br />
-├─ 2-3.c : Polynomial Addition - data structure 2<br />
+├─ 2-2.c : Structures and unions<br />
+├─ 2-3.c : Polynomial addition - data structure 2<br />
 ├─ 2-4.c : Transpose matrix<br />
 ├─ 2-5.c : Fast transpose matrix<br />
-├─ 2-6.c : Sparse Matrix Multiplication<br />
+├─ 2-6.c : Sparse matrix multiplication<br />
 ├<b> Chapter 3. Stacks and Queues (2019.07.29)</b><br />
 ├─ 3-1.c : Implementation stack by array<br />
 ├─ 3-2.c : Implementation queue by array<br />
-├─ 3-3.c : A Mazing Problem<br />
+├─ 3-3.c : A mazing problem<br />
 ├─ 3-4.c : Infix to postfix <br />
 ├<b> Chapter 4. Linked Lists (2019.07.29)</b><br />
 ├─ 4-1.c : Inserting and deleting nodes in a list<br />
