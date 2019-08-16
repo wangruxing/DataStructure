@@ -41,3 +41,6 @@ Book : Fundamentals of Data Structures in C, 2nd Edition. (開發圖書，(02) 8
 ├─ 7-5.c : Merge sort<br />
 ├─ 7-6.c : Heap sort<br />
 └─ 7-7.c : Radix sort<br />
+
+Date: 2019.08.16
+Version: 001
