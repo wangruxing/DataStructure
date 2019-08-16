@@ -18,7 +18,9 @@ typedef TreeNode *threadedPointer; // synonym for TreeNode*
 threadedPointer insucc(threadedPointer tree);
 void tinorder(threadedPointer tree);
 void insertRight (threadedPointer s, threadedPointer r);
+void insertLeft (threadedPointer s, threadedPointer l);
 
+// Finding the inorder successor of a node
 threadedPointer insucc(threadedPointer tree){
     threadedPointer temp;
     temp = tree->rightChild;
@@ -28,16 +30,23 @@ threadedPointer insucc(threadedPointer tree){
     return temp;
 }
 
+// Inorder traversal of a threaded binary tree
 void tinorder(threadedPointer tree){
     threadedPointer temp = tree;
-    for(;;){
-        temp = insucc(temp);
-        if(temp == tree) break;
-        printf("%3c", temp->data);
+    if ( temp != NULL ) { 
+        for(;;){
+            temp = insucc(temp);
+            if(temp == tree) break;
+            printf("%3c", temp->data);
+        }
+    }
+    else{
+        printf("NULL\n");
     }
 }
 
-void insertRight (threadedPointer s, threadedPointer r){
+void insertRight (threadedPointer s
+                    , threadedPointer r){
     threadedPointer temp;
     r->rightChild = s->rightChild;
     r->rightThread = s->rightThread;

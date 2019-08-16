@@ -23,8 +23,8 @@ void levelOrder( TreeNodePtr treePtr );
 void queueFull();
 void queueEmpty();
 void addq(TreeNodePtr treePtr);
-
 TreeNodePtr deleteq();
+
 int front = 0; 
 int rear = 0;
 TreeNodePtr queue[MAX_QUEUE_SIZE];
@@ -84,7 +84,6 @@ void insertNode( TreeNodePtr *treePtr, int value ){
       if ( value < ( *treePtr )->data ) {                   
          insertNode( &( ( *treePtr )->leftPtr ), value );   
       }                                      
-
       // data to insert is greater than data in current node
       else if ( value > ( *treePtr )->data ) {                 
          insertNode( &( ( *treePtr )->rightPtr ), value );     

@@ -1,0 +1,11 @@
+
+ cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 1 Basic Concepts"
+ cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 2 Arrays & Structures"
+ cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 3 Stacks and Queues"
+ cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 4 Linked Lists"
+ cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 5 Trees"
+ cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 6 Graphs"
+ cd C:\Users\NCHU_WCCC\Desktop\DataStructure\"Chapter 7 Sorting"
+ gcc 4.c -o 4
+ ./4.exe
+ cd ..

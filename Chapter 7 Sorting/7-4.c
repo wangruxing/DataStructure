@@ -2,84 +2,102 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t))
+// Quick sort
+// structure                            
+typedef struct {                                           
+   int key; // node value                               
+}element ;
+element a[SIZE];
 
-void quicksort(int *data, int left, int right);
-void swap(int *a, int *b);
+void quicksort(element a[], int left, int right);
 
 int main(void){
     int i, data[SIZE];
-    srand( time( NULL ) ); /* seed the rand function */
-    for ( i = 0; i < SIZE; i++ )
-        data[ i ] = rand() % 90 + 10; /* give each element a value */  
-    printf("Unsorted array: \n");
-    printf("              ");
-    for ( i = 0; i < SIZE; i++ ) /* print the array */
-        printf( "%d  ", data[ i ] );
-    printf("\n");
-    // execute quick sort
-    quicksort(data, 0, SIZE - 1);
+    int value;
 
+    // 26 5 37 1 61 11 59 15 48 19
+    // input data
+    printf("%s", "Please enter ten integers: ");
+    for ( i = 0; i < SIZE; i++ ){
+	    scanf("%2d", &a[i].key);
+    }
+
+    // show data before sorting
+    printf("Unsorted array: \n");
+    printf("                        ");
+    for ( i = 0; i < SIZE; i++ ){ 
+        printf( "%2d  ", a[i].key ); /* print the array */
+    }
+    printf("\n");
+
+    // execute quick sort
+    quicksort(a, 0, SIZE - 1);
+
+    // show data after sorting
     printf("Sorted array: ");
     for (i = 0; i < SIZE; i++){
-        printf("%d  ", data[i]);
+        printf("%2d  ", a[i].key);
     }
     printf("\n");
 }
 
-void quicksort(int *data, int left, int right)
-{
+void quicksort(element a[], int left, int right){
     int pivot, i, j;
-    if (left >= right) { return; }
-    pivot = data[left];
-    i = left + 1;
-    j = right;
-    while (1){
-        while (i <= right){
-            if (data[i] > pivot){ break;}
-            i = i + 1;
-        }
-        while (j > left){
-            if (data[j] < pivot){
-                break;
+    element temp;
+    if(left < right){
+        i = left;
+        j = right + 1;
+        pivot = a[left].key;
+        // until the left and right boundaries cross or meet
+        do{
+            // search value from left side until a[i].key > pivot 
+            do 
+                i++; 
+            while(a[i].key < pivot);
+            // search value from right side until a[j].key < pivot 
+            do 
+                j--; 
+            while(a[j].key > pivot);
+            // swap
+            if (i < j){
+                SWAP(a[i], a[j], temp);   
+                // Output step by step
+                printf("    i, j: %2d swap %2d -> ",a[i].key, a[j].key);
+                for (int z = 0; z < SIZE; z++){
+                    printf("%2d  ", a[z].key);
+                }
+                printf("\n                        ");
+                for (int k = 0; k < SIZE; ++k)
+                    if(k == i || k == j)
+                        printf( "%s", "--  " );
+                    else
+                        printf( "%s", "    " );  
+                printf("\n");          
             }
-            j = j - 1;
-        }
-        if (i > j) { break; }
-        swap(&data[i], &data[j]);
+        } while(i < j);
+        SWAP(a[left], a[j], temp);
         // Output step by step
-        printf("%d swap %d -> ",data[i], data[j]);
-        for (int z = 0; z < SIZE; z++){
-            printf("%d  ", data[z]);
+        printf("pivot, j: %2d swap %2d -> ",a[left].key, a[j].key);
+        for (i = 0; i < SIZE; i++){
+            printf("%2d  ", a[i].key);
         }
-        printf("\n              ");
+        printf("\n                        ");
         for (int k = 0; k < SIZE; ++k)
-            if(k == i || k == j)
+            if(k == left || k == j)
                 printf( "%s", "--  " );
             else
                 printf( "%s", "    " );  
-        printf("\n");  
+        printf("\n");
+        quicksort(a, left, j-1);  // execute quick sort on the left side
+        quicksort(a, j+1, right); // execute quick sort on the right side
     }
-
-    swap(&data[left], &data[j]);
-    // Output step by step
-    printf("%d swap %d -> ",data[left], data[j]);
-    for (i = 0; i < SIZE; i++){
-        printf("%d  ", data[i]);
-    }
-    printf("\n              ");
-    for (int k = 0; k < SIZE; ++k)
-        if(k == left || k == j)
-		    printf( "%s", "--  " );
-        else
-            printf( "%s", "    " );  
-    printf("\n");  
-    
-    quicksort(data, left, j - 1);
-    quicksort(data, j + 1, right);
 }
 
-void swap(int *a, int *b){
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
+/*
+
+ */
+
+/*
+
+ */
