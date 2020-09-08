@@ -6,6 +6,7 @@
 #define MAX_QUEUE_SIZE 100 /* maximum queue size */
 
 // Implementation queue by array
+
 int queue[MAX_QUEUE_SIZE];
 int rear = -1;
 int front = -1;
@@ -38,6 +39,7 @@ int main(int argc, char *argv[]) {
         }
         printf(". front = %d, rear = %d\n\n", front, rear);
 	}
+	
 	return 0;
 }
 
@@ -50,7 +52,7 @@ int isEmpty(){
 } 
 
 int addq(int rear, int value){
-	if(rear == MAX_QUEUE_SIZE){
+	if(rear == MAX_QUEUE_SIZE-1){
 		printf("Queue is full.\n");	
 	}else{
 		rear++;
@@ -70,3 +72,34 @@ int deleteq(int rear, int front){
 		return front; 
 	}
 }
+
+
+
+20190927 data structure PPT pictures 
+typedef struct{
+	int key;
+} element;
+element errorKey={-1};
+
+void addq(element item){
+	if (rear == MAX_QUEUE_SIZE-1)
+		queueFull();
+	queue[++rear] = item;
+}
+
+element deleteq(){
+	if (front == rear)
+		return queueEmpty();
+	return queue[++front];
+}
+
+void queueFull(){
+	fprintf(stderr, "Queue is full, cannot add element\n");
+	exit(EXIT_FAILURE);
+}
+
+element queueEmpty(){
+	fprintf(stderr, "Queue is empty, cannot delete element\n");
+	return errorKey;
+}
+

@@ -3,7 +3,7 @@
 #include <time.h>   /* Time correlation function */
 #include <string.h>
 
-#define MAX_STACK_SIZE 100 /* maximum stack size */
+#define MAX_STACK_SIZE 10 /* maximum stack size */
 
 // Implementation stack by array
 int stack[MAX_STACK_SIZE];
@@ -51,21 +51,48 @@ int isEmpty(){
 } 
 
 void push(int data){
-	if(top >= MAX_STACK_SIZE){
+	if(top >= MAX_STACK_SIZE-1){
 		printf("Stack is full.\n");	
 	}else{
-		top++;
-		stack[top]=data;
+		stack[++top]=data;
 	}
 } 
 
 int pop(){
-	int data;
 	if(isEmpty()){
 		printf("Stack is empty.\n");
 	}else{
-		data=stack[top--];
-		return data; 
+		return stack[top--]; 
 	}
 }
+
+/*
+20190927 data structure PPT pictures 
+typedef struct{
+	int key;
+} element;
+element errorKey={-1};
+
+void push(element item){
+	if (top >= MAX_STACK_SIZE-1)
+		stackFull();	
+	stack[++top] = item;
+} 
+
+element pop(){
+	if (top == -1)
+		return stackEmpty();
+	return stack[top--];
+}
+
+void stackFull(){
+	fprintf(stderr, "Stack is full, cannot add element\n");
+	exit(EXIT_FAILURE);
+}
+
+element stackEmpty(){
+	fprintf(stderr, "Stack is empty, cannot delete element\n");
+	return errorKey;
+}
+*/
 

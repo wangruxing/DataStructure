@@ -22,35 +22,58 @@ void storeSum(term d[], int *totalD, int row, int column, int *sum);
 
 // Sparse Matrix Multiplication
 int main(void) {
+    /*
+     5   0   0         5   0   2          25   0   10 
+     0  11   3         0  11   0           0  130   0   
+     0   0   2     *   0   3   0     =     0   6   36            
+    */
     a[0].row = 3;
     a[0].col = 3;
-    a[0].value = 3;
+    a[0].value = 4;
     a[1].row = 0;
     a[1].col = 0;
-    a[1].value = 1;
+    a[1].value = 5;
     a[2].row = 1;
-    a[2].col = 0;
-    a[2].value = 2;
-    a[3].row = 2;
-    a[3].col = 0;
+    a[2].col = 1;
+    a[2].value = 11;
+    a[3].row = 1;
+    a[3].col = 2;
     a[3].value = 3;
+    a[4].row = 2;
+    a[4].col = 2;
+    a[4].value = 2;
+
 
     b[0].row = 3;
     b[0].col = 3;
-    b[0].value = 3;
+    b[0].value = 4;
     b[1].row = 0;
     b[1].col = 0;
-    b[1].value = 1;
+    b[1].value = 5;
     b[2].row = 0;
-    b[2].col = 1;
+    b[2].col = 2;
     b[2].value = 2;
-    b[3].row = 0;
-    b[3].col = 2;
-    b[3].value = 3;
+    b[3].row = 1;
+    b[3].col = 1;
+    b[3].value = 11;
+    b[4].row = 2;
+    b[4].col = 1;
+    b[4].value = 3;
     mmult (a, b, d);
+    int n;
+    if(b[0].value > a[0].value)
+        if(b[0].value > d[0].value)
+            n = b[0].value;
+        else
+            n = d[0].value;
+    else        
+        if(a[0].value > d[0].value)
+            n = a[0].value;
+        else
+            n = d[0].value;    
     printf("       a                      b                    newB                     d\n");
     printf("row  col  value        row  col  value        row  col  value        row  col  value\n");
-    for(int i = 0;i < 10;i++){
+    for(int i = 0;i <= n+1;i++){
         printf("%3d  %3d  %5d        ", a[i].row, a[i].col, a[i].value);
         printf("%3d  %3d  %5d        ", b[i].row, b[i].col, b[i].value);
         printf("%3d  %3d  %5d        ", newB[i].row, newB[i].col, newB[i].value);
@@ -103,32 +126,35 @@ void fast_transpose(term a[], term b[]){
 }
 
 void mmult (term a[], term b[], term d[]){
-    int i, j, column, totalD = 0;
+    int i, j, column;
+    int totalD = 0;
     int rowsA = a[0].row;
     int colsA = a[0].col;
     int totalA = a[0].value; 
     int colsB = b[0].col;
     int totalB = b[0].value;
-    int rowBegin = 1, row = a[1].row, sum;
+    int rowBegin = 1;
+    int row = a[1].row;
+    int sum = 0;
     if (colsA != b[0].row){
         fprintf (stderr, "Incompatible matrices\n");
         exit (1);
     }
     fast_transpose(b, newB); 
     /* set boundary condition */
-    a[totalA+1].row = rowsA;    // a[4].row=3
-    newB[totalB+1].row = colsB; // newB[4].row=3
-    newB[totalB+1].col = 0;     // newB[4].col=0
+    a[totalA+1].row = rowsA;    // a[5].row=3
+    newB[totalB+1].row = colsB; // newB[5].row=3
+    newB[totalB+1].col = 0;     // newB[5].col=0
 
     for (i = 1; i <= totalA; ) {
         printf("Round %d: \n", i); 
         column = newB[1].row;
-        sum = 0;
-        for (j = 1; j <= totalB+1;) {    
-            printf("i=%d, j=%d, a[%d].row=%d, row=%d\n", i, j, i, a[i].row, row);    
+        for (j = 1; j <= totalB+1;) { 
+            printf("i=%d, j=%d, a[i].row=%d, row=%d, newB[j].row=%d, column=%d\n", i, j, a[i].row, row, newB[j].row, column);    
             if (a[i].row != row) {
                 printf("a[%d].row=%d != row=%d\n", i, a[i].row, row);   
                 storeSum(d, &totalD, row, column, &sum);
+                sum = 0;
                 printf("      d\n");
                 printf("row  col  value\n");
                 for(int i = 0;i <= totalD;i++){
@@ -143,6 +169,7 @@ void mmult (term a[], term b[], term d[]){
             }else if(newB[j].row != column){      
                 printf("newB[%d].row=%d != column=%d\n", j, newB[j].row, column); 
                 storeSum(d, &totalD, row, column, &sum);
+                sum = 0;
                 printf("      d\n");
                 printf("row  col  value\n");
                 for(int i = 0;i <= totalD;i++){
@@ -160,7 +187,7 @@ void mmult (term a[], term b[], term d[]){
                     break;
                 case 0:  
                     printf("COMPARE: a[%d].col=%d = newB[%d].col=%d => case 0\n", i, a[i].col, j, newB[j].col);  
-                    sum = (a[i++].value * newB[j++].value);
+                    sum += (a[i++].value * newB[j++].value);
                     printf("a[i++].value=%d\n", a[i-1].value);
                     printf("newB[j++].value=%d\n", newB[j-1].value);
                     printf("sum=%d\ti=%d\tj=%d\t\n",sum, i, j);

@@ -12,19 +12,20 @@
         exit(EXIT_FAILURE); \
     }
 
-// self-referential structure                       
-struct node {                                      
+// self-referential structure        
+typedef struct node *nodePointer;
+struct node{                                      
    char data; // each listNode contains a character 
-   struct node *link; // pointer to next node
+   nodePointer link; // pointer to next node
 };                     
-typedef struct node Node; // synonym for struct node
-typedef Node *NodePtr; // synonym for Node*
+//typedef struct node Node; // synonym for struct node
+//typedef Node *NodePtr; // synonym for Node*
 
 // Equivalence Relations
 int main(void) {
     short int out[MAX_SIZE];
-    NodePtr seq[MAX_SIZE];
-    NodePtr x, y, top;
+    nodePointer seq[MAX_SIZE];
+    nodePointer x, y, top;
     int i, j, n;
 
     printf("Enter the size (<= %d) ", MAX_SIZE);

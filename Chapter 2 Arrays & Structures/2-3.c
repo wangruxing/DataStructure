@@ -154,9 +154,9 @@ void padd (int starta, int finisha, int startb, int finishb,int startd, int fini
         for(int i = 0;i < avail;i++){
             printf("%2d\t", terms[i].expon);
         }
-        finishd =avail -1;
-        printf("\nfinishd=%d\n", finishd);
-    }     
+    }  
+	finishd =avail -1;
+    printf("\nfinishd=%d\n", finishd);   
 }
 
 void attach(float coefficient, int exponent){
